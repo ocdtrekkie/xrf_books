@@ -70,7 +70,7 @@ echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
 <a href="search_results.php?filter=CDL">View Computer - Library Discs</a></td>
 
 <td width=400>
-<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a> | <a href="search_results.php?filter=Wii">Wii</a> | <a href="search_results.php?filter=WiiU">Wii U</a> | <a href="search_results.php?filter=Switch">Switch</a> | <a href="search_results.php?filter=DS">DS</a>)<br>
+<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a> | <a href="search_results.php?filter=Wii">Wii</a> | <a href="search_results.php?filter=WiiU">WiiU</a> | <a href="search_results.php?filter=Switch">Swit</a> | <a href="search_results.php?filter=DS">DS</a>)<br>
 <a href="search_results.php?filter=CDA">View Audio CDs</a><br>
 <a href="search_results.php?filter=DVD">View DVDs</a><br>
 <a href="search_results.php?filter=BD">View Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a> | <a href="search_results.php?filter=4K">4K</a>)<p>
