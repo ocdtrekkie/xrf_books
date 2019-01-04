@@ -70,17 +70,18 @@ echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
 <a href="search_results.php?filter=CDL">View Computer - Library Discs</a></td>
 
 <td width=400>
-<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GameCube</a> | <a href="search_results.php?filter=Wii">Wii</a> | <a href="search_results.php?filter=DS">DS</a>)<br>
+<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a> | <a href="search_results.php?filter=Wii">Wii</a> | <a href="search_results.php?filter=WiiU">Wii U</a> | <a href="search_results.php?filter=Switch">Switch</a> | <a href="search_results.php?filter=DS">DS</a>)<br>
 <a href="search_results.php?filter=CDA">View Audio CDs</a><br>
 <a href="search_results.php?filter=DVD">View DVDs</a><br>
-<a href="search_results.php?filter=BD">View Blu-ray Discs</a><p>
+<a href="search_results.php?filter=BD">View Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a> | <a href="search_results.php?filter=4K">4K</a>)<p>
 
 <a href="search_results.php?filter=GG">View Game Guides</a><br>
 <a href="search_results.php?filter=GD">View Game Development Books</a>
 
 <?php if ($xrf_myulevel >= 3)
 {
-echo "<p><a href=\"search_results.php?filter=trace\">View Materials set to Trace</a><br>
+echo "<p><a href=\"search_results.php?filter=uncat\">View Materials set to Uncategorized</a><br>
+<a href=\"search_results.php?filter=trace\">View Materials set to Trace</a><br>
 <a href=\"search_results.php?filter=chked\">View Materials set to Checked Out</a><br>
 <a href=\"search_results.php?filter=dmged\">View Materials set to Damaged</a>";
 } ?>
