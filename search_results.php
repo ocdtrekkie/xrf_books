@@ -41,6 +41,10 @@ if ($filter == "BD")
 $cond1 = " AND typecode = 'BD'";
 if ($filter == "video")
 $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'";
+if ($filter == "3D")
+$cond1 = " AND tags LIKE '3d%'";
+if ($filter == "4K")
+$cond1 = " AND tags LIKE '4k%'";
 if ($filter == "VG")
 $cond1 = " AND typecode = 'VG'";
 if ($filter == "PER")
@@ -63,12 +67,20 @@ if ($filter == "lgdrv")
 $cond1 = " AND location = 'lgdrv'";
 if ($filter == "vgcab")
 $cond1 = " AND location = 'vgcab'";
+if ($filter == "Switch")
+$cond1 = " AND format LIKE '%Switch Cart%'";
 if ($filter == "Wii")
 $cond1 = " AND format LIKE '%Wii Disc%'";
+if ($filter == "WiiU")
+$cond1 = " AND format LIKE '%Wii U Disc%'";
 if ($filter == "GameCube")
 $cond1 = " AND format LIKE '%GameCube%'";
 if ($filter == "DS")
 $cond1 = " AND format LIKE '%DS Cart%'";
+if ($filter == "PS3")
+$cond1 = " AND format LIKE '%PS3 Disc%'";
+if ($filter == "PS4")
+$cond1 = " AND format LIKE '%PS4 Disc%'";
 if ($filter == "")
 $cond1 = "";
 
