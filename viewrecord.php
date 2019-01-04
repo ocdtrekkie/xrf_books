@@ -85,11 +85,23 @@ if(mysql_num_rows($result) != 0){
 
 echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"http://account.ocdtrekkie.com/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
 
-if ($format == "1 File (PDF)") {
-	echo "<a href=\"file:///S:/Library/$barcode.pdf\">[Open]</a>";
+if ($format == "1 File (CHM)") {
+	echo "<a href=\"file:///S:/Library/$barcode.chm\">[Open Locally]</a>";
 }
-if ($format == "3 Files (PDF, EPUB, MOBI)") {
-	echo "<a href=\"file:///S:/Library/$barcode\">[Open]</a>";
+if ($format == "1 File (EPUB)") {
+	echo "<a href=\"file:///S:/Library/$barcode.epub\">[Open Locally]</a>";
+}
+if ($format == "1 File (LIT)") {
+	echo "<a href=\"file:///S:/Library/$barcode.lit\">[Open Locally]</a>";
+}
+if ($format == "1 File (MOBI)") {
+	echo "<a href=\"file:///S:/Library/$barcode.mobi\">[Open Locally]</a>";
+}
+if ($format == "1 File (PDF)") {
+	echo "<a href=\"file:///S:/Library/$barcode.pdf\">[Open Locally]</a>";
+}
+if (strpos($format, "Files") === TRUE)) {
+	echo "<a href=\"file:///S:/Library/$barcode\">[Open Locally]</a>";
 }
 
 echo "</font></p>";
