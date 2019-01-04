@@ -16,61 +16,40 @@ if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
 
 $default = " WHERE status != 'wdraw' AND speccode != 'AO'";
-if ($filter == "GG")
-$cond1 = " AND speccode = 'GG'";
-if ($filter == "GD")
-$cond1 = " AND speccode = 'GD'";
-if ($filter == "B")
-$cond1 = " AND typecode = ''";
-if ($filter == "EB")
-$cond1 = " AND typecode = 'EB'";
-if ($filter == "book")
-$cond1 = " AND typecode = '' OR typecode = 'EB'";
-if ($filter == "CDA")
-$cond1 = " AND typecode = 'CDA'";
-if ($filter == "CDG")
-$cond1 = " AND typecode = 'CDG'";
-if ($filter == "CDS")
-$cond1 = " AND typecode = 'CDS'";
-if ($filter == "CDL")
-$cond1 = " AND typecode = 'CDL'";
+if ($filter == "GG") { $cond1 = " AND speccode = 'GG'"; $xrf_page_subtitle = "Game Guides"; }
+if ($filter == "GD") { $cond1 = " AND speccode = 'GD'"; $xrf_page_subtitle = "Game Development Guides"; }
+if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
+if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
+if ($filter == "book") { $cond1 = " AND typecode = '' OR typecode = 'EB'"; $xrf_page_subtitle = "Books"; }
+if ($filter == "CDA") { $cond1 = " AND typecode = 'CDA'"; $xrf_page_subtitle = "Audio Discs"; }
+if ($filter == "CDG") { $cond1 = " AND typecode = 'CDG'"; $xrf_page_subtitle = "Game Discs"; }
+if ($filter == "CDS") { $cond1 = " AND typecode = 'CDS'"; $xrf_page_subtitle = "Software Discs"; }
+if ($filter == "CDL") { $cond1 = " AND typecode = 'CDL'"; $xrf_page_subtitle = "Library Discs"; }
 if ($filter == "DVD") { $cond1 = " AND typecode = 'DVD'"; $xrf_page_subtitle = "DVDs"; }
 if ($filter == "BD") { $cond1 = " AND typecode = 'BD'"; $xrf_page_subtitle = "Blu-rays"; }
 if ($filter == "video") { $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'"; $xrf_page_subtitle = "Movies"; }
 if ($filter == "3D") { $cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'"; $xrf_page_subtitle = "3D Blu-rays"; }
 if ($filter == "4K") { $cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'"; $xrf_page_subtitle = "4K Blu-rays"; }
 if ($filter == "VG") { $cond1 = " AND typecode = 'VG'"; $xrf_page_subtitle = "Video Games"; }
-if ($filter == "PER")
-$cond1 = " AND typecode = 'PER'";
-if ($filter == "EPER")
-$cond1 = " AND typecode = 'EPER'";
-if ($filter == "mag")
-$cond1 = " AND typecode = 'PER' OR typecode = 'EPER'";
+if ($filter == "PER") { $cond1 = " AND typecode = 'PER'"; $xrf_page_subtitle = "Physical Magazines"; }
+if ($filter == "EPER") { $cond1 = " AND typecode = 'EPER'"; $xrf_page_subtitle = "Electronic Magazines"; }
+if ($filter == "mag") { $cond1 = " AND typecode = 'PER' OR typecode = 'EPER'"; $xrf_page_subtitle = "Magazines"; }
 if ($filter == "trace") { $cond1 = " AND status = 'trace'"; $xrf_page_subtitle = "Materials set to Trace"; }
 if ($filter == "chked") { $cond1 = " AND status = 'chked'"; $xrf_page_subtitle = "Materials set to Checked Out"; }
 if ($filter == "dmged") { $cond1 = " AND status = 'dmged'"; $xrf_page_subtitle = "Materials set to Damaged"; }
 if ($filter == "wdraw") { $cond1 = " AND status = 'wdraw'"; $xrf_page_subtitle = "Materials set to Withdrawn"; }
 if ($filter == "uncat") { $cond1 = " AND status = 'uncat'"; $xrf_page_subtitle = "Materials set to Uncategorized"; }
-if ($filter == "lgdrv")
-$cond1 = " AND location = 'lgdrv'";
-if ($filter == "vgcab")
-$cond1 = " AND location = 'vgcab'";
-if ($filter == "Switch")
-$cond1 = " AND format LIKE '%Switch Cart%'";
-if ($filter == "Wii")
-$cond1 = " AND format LIKE '%Wii Disc%'";
-if ($filter == "WiiU")
-$cond1 = " AND format LIKE '%Wii U Disc%'";
-if ($filter == "GameCube")
-$cond1 = " AND format LIKE '%GameCube%'";
-if ($filter == "DS")
-$cond1 = " AND format LIKE '%DS Cart%'";
-if ($filter == "PS3")
-$cond1 = " AND format LIKE '%PS3 Disc%'";
-if ($filter == "PS4")
-$cond1 = " AND format LIKE '%PS4 Disc%'";
-if ($filter == "")
-$cond1 = "";
+if ($filter == "lgdrv") { $cond1 = " AND location = 'lgdrv'"; $xrf_page_subtitle = "Materials Stored Digitally"; }
+if ($filter == "GameCube") { $cond1 = " AND format LIKE '%GameCube%'"; $xrf_page_subtitle = "GameCube Games"; }
+if ($filter == "Wii") { $cond1 = " AND format LIKE '%Wii Disc%'"; $xrf_page_subtitle = "Wii Games"; }
+if ($filter == "WiiU") { $cond1 = " AND format LIKE '%Wii U Disc%'"; $xrf_page_subtitle = "Wii U Games"; }
+if ($filter == "Switch") { $cond1 = " AND format LIKE '%Switch Cart%'"; $xrf_page_subtitle = "Switch Games"; }
+if ($filter == "DS") { $cond1 = " AND format LIKE '%DS Cart%'"; $xrf_page_subtitle = "DS/3DS Games"; }
+if ($filter == "2DS") { $cond1 = " AND format LIKE '% DS Cart%'"; $xrf_page_subtitle = "DS Games"; }
+if ($filter == "3DS") { $cond1 = " AND format LIKE '%3DS Cart%'"; $xrf_page_subtitle = "3DS Games"; }
+if ($filter == "PS3") { $cond1 = " AND format LIKE '%PS3 Disc%'"; $xrf_page_subtitle = "PlayStation 3 Games"; }
+if ($filter == "PS4") { $cond1 = " AND format LIKE '%PS4 Disc%'"; $xrf_page_subtitle = "PlayStation 4 Games"; }
+if ($filter == "") { $cond1 = ""; }
 
 if ($group == "000")
 $cond2 = " AND dewey LIKE '0__%'";
@@ -107,6 +86,7 @@ if ($author != "" && $author != 0)
 {
 $author = (int)$author;
 $cond3 = " AND author='$author'";
+$xrf_page_subtitle = "By " . xrfl_getauthor($author);
 }
 
 if ($searchwhat == "keyword")
