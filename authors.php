@@ -1,12 +1,14 @@
 <?php
 require_once("includes/global.php");
 require_once("includes/functions_lib.php");
+
+$letter = substr($_GET['letter'],0,1);
+$xrf_page_subtitle = "Authors beginning with " . $letter;
+
 require_once("includes/header.php");
 
-$letter = $_GET['letter'];
-
 if ($letter != "")
-$ltrstr = " WHERE name LIKE '" . substr($letter,0,1) . "%'";
+$ltrstr = " WHERE name LIKE '" . $letter . "%'";
 else
 $ltrstr = "";
 

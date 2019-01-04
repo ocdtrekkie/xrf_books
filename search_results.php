@@ -2,7 +2,6 @@
 require_once("includes/global.php");
 require_once("includes/functions_class.php");
 require_once("includes/functions_lib.php");
-require_once("includes/header.php");
 
 $filter = $_GET['filter'];
 $group = $_GET['group'];
@@ -35,34 +34,23 @@ if ($filter == "CDS")
 $cond1 = " AND typecode = 'CDS'";
 if ($filter == "CDL")
 $cond1 = " AND typecode = 'CDL'";
-if ($filter == "DVD")
-$cond1 = " AND typecode = 'DVD'";
-if ($filter == "BD")
-$cond1 = " AND typecode = 'BD'";
-if ($filter == "video")
-$cond1 = " AND typecode = 'DVD' OR typecode = 'BD'";
-if ($filter == "3D")
-$cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'";
-if ($filter == "4K")
-$cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'";
-if ($filter == "VG")
-$cond1 = " AND typecode = 'VG'";
+if ($filter == "DVD") { $cond1 = " AND typecode = 'DVD'"; $xrf_page_subtitle = "DVDs"; }
+if ($filter == "BD") { $cond1 = " AND typecode = 'BD'"; $xrf_page_subtitle = "Blu-rays"; }
+if ($filter == "video") { $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'"; $xrf_page_subtitle = "Movies"; }
+if ($filter == "3D") { $cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'"; $xrf_page_subtitle = "3D Blu-rays"; }
+if ($filter == "4K") { $cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'"; $xrf_page_subtitle = "4K Blu-rays"; }
+if ($filter == "VG") { $cond1 = " AND typecode = 'VG'"; $xrf_page_subtitle = "Video Games"; }
 if ($filter == "PER")
 $cond1 = " AND typecode = 'PER'";
 if ($filter == "EPER")
 $cond1 = " AND typecode = 'EPER'";
 if ($filter == "mag")
 $cond1 = " AND typecode = 'PER' OR typecode = 'EPER'";
-if ($filter == "trace")
-$cond1 = " AND status = 'trace'";
-if ($filter == "chked")
-$cond1 = " AND status = 'chked'";
-if ($filter == "dmged")
-$cond1 = " AND status = 'dmged'";
-if ($filter == "wdraw")
-$cond1 = " AND status = 'wdraw'";
-if ($filter == "uncat")
-$cond1 = " AND status = 'uncat'";
+if ($filter == "trace") { $cond1 = " AND status = 'trace'"; $xrf_page_subtitle = "Materials set to Trace"; }
+if ($filter == "chked") { $cond1 = " AND status = 'chked'"; $xrf_page_subtitle = "Materials set to Checked Out"; }
+if ($filter == "dmged") { $cond1 = " AND status = 'dmged'"; $xrf_page_subtitle = "Materials set to Damaged"; }
+if ($filter == "wdraw") { $cond1 = " AND status = 'wdraw'"; $xrf_page_subtitle = "Materials set to Withdrawn"; }
+if ($filter == "uncat") { $cond1 = " AND status = 'uncat'"; $xrf_page_subtitle = "Materials set to Uncategorized"; }
 if ($filter == "lgdrv")
 $cond1 = " AND location = 'lgdrv'";
 if ($filter == "vgcab")
@@ -142,6 +130,9 @@ $sort1 = "lccat, title ASC";
 $query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4 ORDER BY $sort1";
 $result = mysql_query($query);
 $num=mysql_numrows($result);
+
+if ($xrf_page_subtitle == "") { $xrf_page_subtitle = "Search Results"; }
+require_once("includes/header.php");
 
 echo "Results Found: $num<br>&nbsp;<br><table width=\"100%\">";
 

@@ -1,4 +1,4 @@
-<?php
+<?php $xrf_page_subtitle = "Home";
 require_once("includes/global.php");
 require_once("includes/functions_class.php");
 require_once("includes/functions_lib.php");

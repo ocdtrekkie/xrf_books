@@ -2,7 +2,6 @@
 require_once("includes/global.php");
 require_once("includes/functions_class.php");
 require_once("includes/functions_lib.php");
-require_once("includes/header.php");
 
 $barcode = $_GET['barcode'];
 
@@ -33,6 +32,9 @@ die("Not authorized!");
 
 if ($speccode == "AO" && $xrf_myulevel < 4)
 die("Not authorized!");
+
+$xrf_page_subtitle = $title;
+require_once("includes/header.php");
 
 if ($isbn10 != "")
 $isbn10 = xrfl_isbn10hyp($isbn10);
