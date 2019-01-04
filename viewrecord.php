@@ -100,7 +100,7 @@ if ($format == "1 File (MOBI)") {
 if ($format == "1 File (PDF)") {
 	echo "<a href=\"file:///S:/Library/$barcode.pdf\">[Open Locally]</a>";
 }
-if (strpos($format, "Files") === TRUE)) {
+if (strpos($format, "Files") === TRUE) {
 	echo "<a href=\"file:///S:/Library/$barcode\">[Open Locally]</a>";
 }
 
