@@ -42,9 +42,9 @@ $cond1 = " AND typecode = 'BD'";
 if ($filter == "video")
 $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'";
 if ($filter == "3D")
-$cond1 = " AND tags LIKE '3d%'";
+$cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'";
 if ($filter == "4K")
-$cond1 = " AND tags LIKE '4k%'";
+$cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'";
 if ($filter == "VG")
 $cond1 = " AND typecode = 'VG'";
 if ($filter == "PER")
