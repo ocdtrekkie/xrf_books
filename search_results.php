@@ -16,7 +16,7 @@ if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
 
 $default = " WHERE status != 'wdraw' AND speccode != 'AO'";
-if ($filter == "GG") { $cond1 = " AND speccode = 'GG'"; $xrf_page_subtitle = "Game Guides"; }
+if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
 if ($filter == "GD") { $cond1 = " AND speccode = 'GD'"; $xrf_page_subtitle = "Game Development Guides"; }
 if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
 if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
