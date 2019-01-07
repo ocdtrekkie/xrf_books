@@ -85,7 +85,7 @@ if(mysql_num_rows($result) != 0){
   echo "<p>Serial: $serial</p>";
 }
 
-echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"http://account.ocdtrekkie.com/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
+echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
 
 if ($format == "1 File (CHM)") {
 	echo "<a href=\"file:///S:/Library/$barcode.chm\">[Open Locally]</a>";

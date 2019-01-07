@@ -21,7 +21,7 @@ echo "<div class=\"header\" align=\"center\">
 <table width=\"100%\"><tr><td>
 <p align=\"left\">
 <font size=\"6\" color=\"white\">$xrf_site_name Library</font><br>
-<font color=\"white\">$xrf_myusername</font>
+<font color=\"white\"><a href=\"$xrf_site_url\"><font color=\"white\">$xrf_myusername</font></a></font>
 </p>
 </td><td>
 <p align=\"right\">
