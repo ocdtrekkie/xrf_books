@@ -41,7 +41,7 @@ $isbn10 = xrfl_isbn10hyp($isbn10);
 if ($isbn13 != "" && strlen(xrfl_isbn13hyp($isbn13)) > 13)
 $isbn13 = xrfl_isbn13hyp($isbn13);
 if ($issn != "")
-$issn = xrfl_issnhyp($issn);
+$issnhyp = xrfl_issnhyp($issn);
 
 $status = xrfl_getstatus($status);
 $location = xrfl_getlocation($location);
@@ -68,7 +68,7 @@ echo "ISBN-10: $isbn10<br>";
 if ($isbn13 != "")
 echo "ISBN-13: $isbn13<br>";
 if ($issn != "")
-echo "ISSN: $issn<br>";
+echo "ISSN: <a href=\"search_results.php?issn=$issn\">$issnhyp</a><br>";
 if ($lccn != "")
 echo "LCCN: <a href=\"https://lccn.loc.gov/$lccn\" target=\"_blank\">$lccn</a><br>";
 if ($lccat != "")
