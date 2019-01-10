@@ -7,6 +7,7 @@ $filter = $_GET['filter'];
 $group = $_GET['group'];
 $author = $_GET['author'];
 $sort = $_GET['sort'];
+$issn = $_GET['issn'];
 
 $searchterm = xrf_mysql_sanitize_string($_POST['searchterm']);
 $searchwhat = xrf_mysql_sanitize_string($_POST['searchwhat']);
@@ -102,12 +103,15 @@ if ($searchwhat == "numbers")
 $cond4 = " AND (isbn10 = '$searchterm' OR isbn13 = '$searchterm' OR issn = '$searchterm' OR lccn = '$searchterm')";
 }
 
+if ($issn != "")
+$cond5 = " AND issn = '$issn'";
+
 if ($sort == "" || $sort == "dewey")
 $sort1 = "dewey, title ASC";
 if ($sort == "loc")
 $sort1 = "lccat, title ASC";
 
-$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4 ORDER BY $sort1";
+$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1";
 $result = mysql_query($query);
 $num=mysql_numrows($result);
 
