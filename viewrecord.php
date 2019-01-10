@@ -36,9 +36,9 @@ die("Not authorized!");
 $xrf_page_subtitle = $title;
 require_once("includes/header.php");
 
-if ($isbn10 != "")
+if ($isbn10 != "" && strlen(xrfl_isbn10hyp($isbn10)) > 10)
 $isbn10 = xrfl_isbn10hyp($isbn10);
-if ($isbn13 != "")
+if ($isbn13 != "" && strlen(xrfl_isbn13hyp($isbn13)) > 13)
 $isbn13 = xrfl_isbn13hyp($isbn13);
 if ($issn != "")
 $issn = xrfl_issnhyp($issn);
