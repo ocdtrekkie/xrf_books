@@ -27,7 +27,7 @@ $status = mysql_result($result,$zz,"status");
 $location = mysql_result($result,$zz,"location");
 $tags = mysql_result($result,$zz,"tags");
 
-if (($typecode == "EB" || $typecode == "EPER") && xrf_has_uclass($xrf_myuclass,"L") == false)
+if (($typecode == "EB" || $typecode == "EPER" || $typecode == "EVG") && xrf_has_uclass($xrf_myuclass,"L") == false)
 die("Not authorized!");
 
 if ($speccode == "AO" && $xrf_myulevel < 4)
