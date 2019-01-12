@@ -62,7 +62,8 @@ require_once("includes/header.php");
 <?php if (xrf_has_uclass($xrf_myuclass,"L"))
 {
 echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
-<a href=\"search_results.php?filter=EPER\">View Electronic Magazines</a><p>";
+<a href=\"search_results.php?filter=EPER\">View Electronic Magazines</a><br>
+<a href=\"search_results.php?filter=EVG\">View Electronic Games</a><p>";
 } ?>
 
 <a href="search_results.php?filter=CDS">View Computer - Software Discs</a><br>
@@ -70,10 +71,10 @@ echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
 <a href="search_results.php?filter=CDL">View Computer - Library Discs</a></td>
 
 <td width=400>
-<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a> | <a href="search_results.php?filter=Wii">Wii</a> | <a href="search_results.php?filter=WiiU">WiiU</a> | <a href="search_results.php?filter=Switch">Swit</a> | <a href="search_results.php?filter=DS">DS</a>)<br>
+<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
 <a href="search_results.php?filter=CDA">View Audio CDs</a><br>
 <a href="search_results.php?filter=DVD">View DVDs</a><br>
-<a href="search_results.php?filter=BD">View Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a> | <a href="search_results.php?filter=4K">4K</a>)<p>
+<a href="search_results.php?filter=BD">View Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=4K">4K</a>)<p>
 
 <a href="search_results.php?filter=GG">View Game Guides</a><br>
 <a href="search_results.php?filter=GD">View Game Development Books</a>
