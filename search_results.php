@@ -49,6 +49,8 @@ if ($filter == "Switch") { $cond1 = " AND format LIKE '%Switch Cart%'"; $xrf_pag
 if ($filter == "DS") { $cond1 = " AND format LIKE '%DS Cart%'"; $xrf_page_subtitle = "DS/3DS Games"; }
 if ($filter == "2DS") { $cond1 = " AND format LIKE '% DS Cart%'"; $xrf_page_subtitle = "DS Games"; }
 if ($filter == "3DS") { $cond1 = " AND format LIKE '%3DS Cart%'"; $xrf_page_subtitle = "3DS Games"; }
+if ($filter == "PS1") { $cond1 = " AND format LIKE '%PS1 Disc%'"; $xrf_page_subtitle = "PlayStation 1 Games"; }
+if ($filter == "PS2") { $cond1 = " AND format LIKE '%PS2 Disc%'"; $xrf_page_subtitle = "PlayStation 2 Games"; }
 if ($filter == "PS3") { $cond1 = " AND format LIKE '%PS3 Disc%'"; $xrf_page_subtitle = "PlayStation 3 Games"; }
 if ($filter == "PS4") { $cond1 = " AND format LIKE '%PS4 Disc%'"; $xrf_page_subtitle = "PlayStation 4 Games"; }
 if ($filter == "") { $cond1 = ""; }
