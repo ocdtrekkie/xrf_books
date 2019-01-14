@@ -16,7 +16,7 @@ $searchgroup = xrf_mysql_sanitize_string($_POST['searchgroup']);
 if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
 
-$default = " WHERE status != 'wdraw' AND speccode != 'AO'";
+$default = " WHERE status != 'wdraw' AND status != 'rstrc'";
 if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
 if ($filter == "GD") { $cond1 = " AND speccode = 'GD'"; $xrf_page_subtitle = "Game Development Guides"; }
 if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }

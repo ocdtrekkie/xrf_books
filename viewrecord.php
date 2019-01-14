@@ -30,7 +30,7 @@ $tags = mysql_result($result,$zz,"tags");
 if (($typecode == "EB" || $typecode == "EPER" || $typecode == "EVG") && xrf_has_uclass($xrf_myuclass,"L") == false)
 die("Not authorized!");
 
-if ($speccode == "AO" && $xrf_myulevel < 4)
+if ($status == "rstrc" && $xrf_myulevel < 4)
 die("Not authorized!");
 
 $xrf_page_subtitle = $title;
