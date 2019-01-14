@@ -22,7 +22,6 @@ $isbn13 = mysql_result($result,$zz,"isbn13");
 $issn = mysql_result($result,$zz,"issn");
 $lccn = mysql_result($result,$zz,"lccn");
 $lccat = mysql_result($result,$zz,"lccat");
-$speccode = mysql_result($result,$zz,"speccode");
 $status = mysql_result($result,$zz,"status");
 $location = mysql_result($result,$zz,"location");
 $tags = mysql_result($result,$zz,"tags");

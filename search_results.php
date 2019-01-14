@@ -18,7 +18,7 @@ if ($searchgroup != "") $group = $searchgroup;
 
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
 if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
-if ($filter == "GD") { $cond1 = " AND speccode = 'GD'"; $xrf_page_subtitle = "Game Development Guides"; }
+if ($filter == "GD") { $cond1 = " AND tags LIKE '%game development%'"; $xrf_page_subtitle = "Game Development Books"; }
 if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
 if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
 if ($filter == "book") { $cond1 = " AND typecode = '' OR typecode = 'EB'"; $xrf_page_subtitle = "Books"; }
@@ -135,7 +135,6 @@ $format = mysql_result($result,$qq,"format");
 $isbn10 = mysql_result($result,$qq,"isbn10");
 $isbn13 = mysql_result($result,$qq,"isbn13");
 $lccat = mysql_result($result,$qq,"lccat");
-$speccode = mysql_result($result,$qq,"speccode");
 $barcode = $barcode + 448900000000;
 if ($author <> "")
 {
