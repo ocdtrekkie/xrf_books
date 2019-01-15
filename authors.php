@@ -14,7 +14,7 @@ $ltrstr = "";
 
 $query = "SELECT * FROM l_authors$ltrstr ORDER BY name, years";
 $result = mysql_query($query);
-$num=mysql_numrows($result);
+$num=mysql_num_rows($result);
 
 echo "<table width=\"100%\">";
 

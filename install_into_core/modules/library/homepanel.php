@@ -2,7 +2,7 @@
 require("ismodule.php");
 $zquery="SELECT * FROM l_circ WHERE uid = '$xrf_myid' AND returned = 0";
 $zresult=mysql_query($zquery);
-$znum=mysql_numrows($zresult);
+$znum=mysql_num_rows($zresult);
 
 if ($znum > 0)
 {

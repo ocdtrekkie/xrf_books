@@ -116,7 +116,7 @@ $sort1 = "lccat, title ASC";
 
 $query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1";
 $result = mysql_query($query);
-$num=mysql_numrows($result);
+$num=mysql_num_rows($result);
 
 if ($xrf_page_subtitle == "") { $xrf_page_subtitle = "Search Results"; }
 require_once("includes/header.php");

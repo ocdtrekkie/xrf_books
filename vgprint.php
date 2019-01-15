@@ -4,7 +4,7 @@ require_once("includes/functions_lib.php");
 
 $query = "SELECT * FROM l_books WHERE location = 'vgcab' ORDER BY title";
 $result = mysql_query($query);
-$num=mysql_numrows($result);
+$num=mysql_num_rows($result);
 
 $qq=0;
 while ($qq < $num) {
