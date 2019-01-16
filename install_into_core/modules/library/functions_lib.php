@@ -59,7 +59,7 @@ $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 
 if (substr($isbn,0,1) == 1)
 {
-if (substr($isbn,1,2) <= 09)
+if (substr($isbn,1,2) <= 9) //09
 $isbna = $isbna . substr($isbn,1,2) . "-" . substr($isbn,3,6);
 
 if (substr($isbn,1,3) >= 100 && substr($isbn,1,3) <= 399)
@@ -107,19 +107,19 @@ $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 
 if (substr($isbn,0,1) == 3)
 {
-if (substr($isbn,1,2) <= 02)
+if (substr($isbn,1,2) <= 2) //02
 $isbna = $isbna . substr($isbn,1,2) . "-" . substr($isbn,3,6);
 
-if (substr($isbn,1,3) >= 030 && substr($isbn,1,3) <= 033)
+if (substr($isbn,1,3) >= 30 && substr($isbn,1,3) <= 33) //030-033
 $isbna = $isbna . substr($isbn,1,3) . "-" . substr($isbn,4,5);
 
-if (substr($isbn,1,4) >= 0340 && substr($isbn,1,4) <= 0369)
+if (substr($isbn,1,4) >= 340 && substr($isbn,1,4) <= 369) //0340-0369
 $isbna = $isbna . substr($isbn,1,4) . "-" . substr($isbn,5,4);
 
-if (substr($isbn,1,5) >= 03700 && substr($isbn,1,5) <= 03999)
+if (substr($isbn,1,5) >= 3700 && substr($isbn,1,5) <= 3999) //03700-03999
 $isbna = $isbna . substr($isbn,1,5) . "-" . substr($isbn,6,3);
 
-if (substr($isbn,1,2) >= 04 && substr($isbn,1,2) <= 19)
+if (substr($isbn,1,2) >= 4 && substr($isbn,1,2) <= 19) //04-19
 $isbna = $isbna . substr($isbn,1,2) . "-" . substr($isbn,3,6);
 
 if (substr($isbn,1,3) >= 200 && substr($isbn,1,3) <= 699)
