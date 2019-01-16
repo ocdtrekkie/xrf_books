@@ -9,22 +9,22 @@ $smallcode = $barcode - 448900000000;
 $smallcode = (int)$smallcode;
 
 $query = "SELECT * FROM l_books WHERE barcode = '$smallcode'";
-$result = mysql_query($query);
+$result = mysqli_query($xrf_db, $query);
 
-$typecode = mysql_result($result,$zz,"typecode");
-$dewey = mysql_result($result,$zz,"dewey");
-$author = mysql_result($result,$zz,"author");
-$title = mysql_result($result,$zz,"title");
-$format = mysql_result($result,$zz,"format");
-$year = mysql_result($result,$zz,"year");
-$isbn10 = mysql_result($result,$zz,"isbn10");
-$isbn13 = mysql_result($result,$zz,"isbn13");
-$issn = mysql_result($result,$zz,"issn");
-$lccn = mysql_result($result,$zz,"lccn");
-$lccat = mysql_result($result,$zz,"lccat");
-$status = mysql_result($result,$zz,"status");
-$location = mysql_result($result,$zz,"location");
-$tags = mysql_result($result,$zz,"tags");
+$typecode = xrf_mysql_result($result,0,"typecode");
+$dewey = xrf_mysql_result($result,0,"dewey");
+$author = xrf_mysql_result($result,0,"author");
+$title = xrf_mysql_result($result,0,"title");
+$format = xrf_mysql_result($result,0,"format");
+$year = xrf_mysql_result($result,0,"year");
+$isbn10 = xrf_mysql_result($result,0,"isbn10");
+$isbn13 = xrf_mysql_result($result,0,"isbn13");
+$issn = xrf_mysql_result($result,0,"issn");
+$lccn = xrf_mysql_result($result,0,"lccn");
+$lccat = xrf_mysql_result($result,0,"lccat");
+$status = xrf_mysql_result($result,0,"status");
+$location = xrf_mysql_result($result,0,"location");
+$tags = xrf_mysql_result($result,0,"tags");
 
 if (($typecode == "EB" || $typecode == "EPER" || $typecode == "EVG") && xrf_has_uclass($xrf_myuclass,"L") == false)
 die("Not authorized!");
@@ -78,9 +78,9 @@ if ($xrf_myulevel > 3)
 echo "<p>Tags: $tags</p>";
 
 $query = "SELECT * FROM l_serials WHERE barcode = '$smallcode'";
-$result = mysql_query($query);
-if(mysql_num_rows($result) != 0){
-  $serial = mysql_result($result,0,"serial");
+$result = mysqli_query($xrf_db, $query);
+if(mysqli_num_rows($result) != 0){
+  $serial = xrf_mysql_result($result,0,"serial");
   echo "<p>Serial: $serial</p>";
 }
 

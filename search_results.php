@@ -9,10 +9,10 @@ $author = $_GET['author'];
 $sort = $_GET['sort'];
 $issn = $_GET['issn'];
 
-$searchterm = xrf_mysql_sanitize_string($_POST['searchterm']);
-$searchwhat = xrf_mysql_sanitize_string($_POST['searchwhat']);
-$searchfilter = xrf_mysql_sanitize_string($_POST['searchfilter']);
-$searchgroup = xrf_mysql_sanitize_string($_POST['searchgroup']);
+$searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
+$searchwhat = mysqli_real_escape_string($xrf_db, $_POST['searchwhat']);
+$searchfilter = mysqli_real_escape_string($xrf_db, $_POST['searchfilter']);
+$searchgroup = mysqli_real_escape_string($xrf_db, $_POST['searchgroup']);
 if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
 
@@ -115,8 +115,8 @@ if ($sort == "loc")
 $sort1 = "lccat, title ASC";
 
 $query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1";
-$result = mysql_query($query);
-$num=mysql_num_rows($result);
+$result = mysqli_query($xrf_db, $query);
+$num=mysqli_num_rows($result);
 
 if ($xrf_page_subtitle == "") { $xrf_page_subtitle = "Search Results"; }
 require_once("includes/header.php");
@@ -126,15 +126,15 @@ echo "Results Found: $num<br>&nbsp;<br><table width=\"100%\">";
 $qq=0;
 while ($qq < $num) {
 
-$barcode = mysql_result($result,$qq,"barcode");
-$typecode = mysql_result($result,$qq,"typecode");
-$dewey = mysql_result($result,$qq,"dewey");
-$author = mysql_result($result,$qq,"author");
-$title = mysql_result($result,$qq,"title");
-$format = mysql_result($result,$qq,"format");
-$isbn10 = mysql_result($result,$qq,"isbn10");
-$isbn13 = mysql_result($result,$qq,"isbn13");
-$lccat = mysql_result($result,$qq,"lccat");
+$barcode = xrf_mysql_result($result,$qq,"barcode");
+$typecode = xrf_mysql_result($result,$qq,"typecode");
+$dewey = xrf_mysql_result($result,$qq,"dewey");
+$author = xrf_mysql_result($result,$qq,"author");
+$title = xrf_mysql_result($result,$qq,"title");
+$format = xrf_mysql_result($result,$qq,"format");
+$isbn10 = xrf_mysql_result($result,$qq,"isbn10");
+$isbn13 = xrf_mysql_result($result,$qq,"isbn13");
+$lccat = xrf_mysql_result($result,$qq,"lccat");
 $barcode = $barcode + 448900000000;
 if ($author <> "")
 {

@@ -5,8 +5,8 @@
 function xrfl_getauthor($id)
 {
 $query="SELECT name FROM l_authors WHERE id='$id'";
-$result=mysql_query($query);
-$name=mysql_result($result,$mm,"name");
+$result=mysqli_query($xrf_db, $query);
+$name=xrf_mysql_result($result,0,"name");
 return ($name);
 }
 
@@ -15,8 +15,8 @@ return ($name);
 function xrfl_getstatus($code)
 {
 $query="SELECT descr FROM l_statuses WHERE code='$code'";
-$result=mysql_query($query);
-$descr=mysql_result($result,$mm,"descr");
+$result=mysqli_query($xrf_db, $query);
+$descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 
@@ -25,8 +25,8 @@ return ($descr);
 function xrfl_getlocation($code)
 {
 $query="SELECT descr FROM l_locations WHERE code='$code'";
-$result=mysql_query($query);
-$descr=mysql_result($result,$mm,"descr");
+$result=mysqli_query($xrf_db, $query);
+$descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 
