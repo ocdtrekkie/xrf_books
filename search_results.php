@@ -90,7 +90,7 @@ if ($author != "" && $author != 0)
 {
 $author = (int)$author;
 $cond3 = " AND author='$author'";
-$xrf_page_subtitle = "By " . xrfl_getauthor($author);
+$xrf_page_subtitle = "By " . xrfl_getauthor($xrf_db, $author);
 }
 
 if ($searchwhat == "keyword")
@@ -138,7 +138,7 @@ $lccat = xrf_mysql_result($result,$qq,"lccat");
 $barcode = $barcode + 448900000000;
 if ($author <> "")
 {
-$aname = xrfl_getauthor($author);
+$aname = xrfl_getauthor($xrf_db, $author);
 $aname = "<a href=\"search_results.php?author=$author\">$aname</a>";
 }
 else

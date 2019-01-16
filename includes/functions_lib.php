@@ -2,7 +2,7 @@
 
 //Function xrfl_getauthor
 //Use: Returns the full name of an author.
-function xrfl_getauthor($id)
+function xrfl_getauthor($xrf_db, $id)
 {
 $query="SELECT name FROM l_authors WHERE id='$id'";
 $result=mysqli_query($xrf_db, $query);
@@ -12,7 +12,7 @@ return ($name);
 
 //Function xrfl_getstatus
 //Use: Returns the full name of a status.
-function xrfl_getstatus($code)
+function xrfl_getstatus($xrf_db, $code)
 {
 $query="SELECT descr FROM l_statuses WHERE code='$code'";
 $result=mysqli_query($xrf_db, $query);
@@ -22,7 +22,7 @@ return ($descr);
 
 //Function xrfl_getlocation
 //Use: Returns the full name of a location.
-function xrfl_getlocation($code)
+function xrfl_getlocation($xrf_db, $code)
 {
 $query="SELECT descr FROM l_locations WHERE code='$code'";
 $result=mysqli_query($xrf_db, $query);

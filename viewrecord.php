@@ -42,14 +42,14 @@ $isbn13 = xrfl_isbn13hyp($isbn13);
 if ($issn != "")
 $issnhyp = xrfl_issnhyp($issn);
 
-$status = xrfl_getstatus($status);
-$location = xrfl_getlocation($location);
+$status = xrfl_getstatus($xrf_db, $status);
+$location = xrfl_getlocation($xrf_db, $location);
 
 echo "<font size=\"5\">$title</font>";
 
 if ($author <> "")
 {
-$aname = xrfl_getauthor($author);
+$aname = xrfl_getauthor($xrf_db, $author);
 echo "<br><a href=\"search_results.php?author=$author\">$aname</a>";
 }
 
