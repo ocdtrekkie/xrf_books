@@ -2,31 +2,31 @@
 
 //Function xrfl_getauthor
 //Use: Returns the full name of an author.
-function xrfl_getauthor($id)
+function xrfl_getauthor($xrf_db, $id)
 {
 $query="SELECT name FROM l_authors WHERE id='$id'";
-$result=mysql_query($query);
-$name=mysql_result($result,$mm,"name");
+$result=mysqli_query($xrf_db, $query);
+$name=xrf_mysql_result($result,0,"name");
 return ($name);
 }
 
 //Function xrfl_getstatus
 //Use: Returns the full name of a status.
-function xrfl_getstatus($code)
+function xrfl_getstatus($xrf_db, $code)
 {
 $query="SELECT descr FROM l_statuses WHERE code='$code'";
-$result=mysql_query($query);
-$descr=mysql_result($result,$mm,"descr");
+$result=mysqli_query($xrf_db, $query);
+$descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 
 //Function xrfl_getlocation
 //Use: Returns the full name of a location.
-function xrfl_getlocation($code)
+function xrfl_getlocation($xrf_db, $code)
 {
 $query="SELECT descr FROM l_locations WHERE code='$code'";
-$result=mysql_query($query);
-$descr=mysql_result($result,$mm,"descr");
+$result=mysqli_query($xrf_db, $query);
+$descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 

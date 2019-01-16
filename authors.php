@@ -13,17 +13,17 @@ else
 $ltrstr = "";
 
 $query = "SELECT * FROM l_authors$ltrstr ORDER BY name, years";
-$result = mysql_query($query);
-$num=mysql_num_rows($result);
+$result = mysqli_query($xrf_db, $query);
+$num=mysqli_num_rows($result);
 
 echo "<table width=\"100%\">";
 
 $qq=0;
 while ($qq < $num) {
 
-$id = mysql_result($result,$qq,"id");
-$name = mysql_result($result,$qq,"name");
-$years = mysql_result($result,$qq,"years");
+$id = xrf_mysql_result($result,$qq,"id");
+$name = xrf_mysql_result($result,$qq,"name");
+$years = xrf_mysql_result($result,$qq,"years");
 
 echo "<tr><td>$id</td><td><a href=\"search_results.php?author=$id\">$name $years</a></td></tr>";
 
