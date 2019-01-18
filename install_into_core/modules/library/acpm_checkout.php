@@ -3,24 +3,24 @@ require("ismodule.php");
 
 if ($do == "check")
 {
-	$patron = xrf_mysql_sanitize_string($_POST['patron']);
-	$barcode = xrf_mysql_sanitize_string($_POST['barcode']);
-	$duedate = xrf_mysql_sanitize_string($_POST['duedate']);
+	$patron = mysqli_real_escape_string($xrf_db, $_POST['patron']);
+	$barcode = mysqli_real_escape_string($xrf_db, $_POST['barcode']);
+	$duedate = mysqli_real_escape_string($xrf_db, $_POST['duedate']);
 	$bookid = $barcode - 448900000000;
 
 	$query="SELECT * FROM g_users WHERE email='$patron' || id='$patron'";
-	$result=mysql_query($query);
-	@$custid=mysql_result($result,0,"id");
+	$result=mysqli_query($xrf_db, $query);
+	@$custid=xrf_mysql_result($result,0,"id");
 	
 	$query="SELECT * FROM l_books WHERE barcode='$bookid'";
-	$result=mysql_query($query);
-	@$oldstatus=mysql_result($result,0,"status");
+	$result=mysqli_query($xrf_db, $query);
+	@$oldstatus=xrf_mysql_result($result,0,"status");
 	if ($oldstatus == "chked")
-		mysql_query("UPDATE l_circ SET returned = NOW() WHERE bookid = '$bookid'") or die(mysql_error());
+		mysqli_query($xrf_db, "UPDATE l_circ SET returned = NOW() WHERE bookid = '$bookid'") or die(mysqli_error($xrf_db));
 	else
-		mysql_query("UPDATE l_books SET status = 'chked' WHERE barcode = '$bookid'") or die(mysql_error()); 
+		mysqli_query($xrf_db, "UPDATE l_books SET status = 'chked' WHERE barcode = '$bookid'") or die(mysqli_error($xrf_db)); 
 
-	mysql_query("INSERT INTO l_circ (uid, bookid, date, due) VALUES('$custid', $bookid, NOW(), '$duedate')") or die(mysql_error()); 
+	mysqli_query($xrf_db, "INSERT INTO l_circ (uid, bookid, date, due) VALUES('$custid', $bookid, NOW(), '$duedate')") or die(mysqli_error($xrf_db)); 
 
 	xrf_go_redir("acp.php","Checked out.",2);
 }
