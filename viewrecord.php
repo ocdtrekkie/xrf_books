@@ -49,7 +49,7 @@ echo "<font size=\"5\">$title</font>";
 
 if ($author <> "")
 {
-$aname = xrfl_getauthor($xrf_db, $author);
+$aname = xrfl_getauthor_years($xrf_db, $author);
 echo "<br><a href=\"search_results.php?author=$author\">$aname</a>";
 }
 

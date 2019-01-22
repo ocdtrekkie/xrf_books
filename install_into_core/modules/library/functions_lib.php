@@ -10,6 +10,18 @@ $name=xrf_mysql_result($result,0,"name");
 return ($name);
 }
 
+//Function xrfl_getauthor_years
+//Use: Returns the name of an author and their birth and death year, if known.
+function xrfl_getauthor_years($xrf_db, $id)
+{
+$query="SELECT name, years FROM l_authors WHERE id='$id'";
+$result=mysqli_query($xrf_db, $query);
+$name=xrf_mysql_result($result,0,"name");
+$years=xrf_mysql_result($result,0,"years");
+if ($years == "") { return ($name); }
+else { return ($name . " " . $years); }
+}
+
 //Function xrfl_getstatus
 //Use: Returns the full name of a status.
 function xrfl_getstatus($xrf_db, $code)
