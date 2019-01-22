@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=iso-8859-15');
 if ($xrf_mystylepref == "") {$xrf_style = $xrf_style_default;}
 else {$xrf_style = $xrf_mystylepref;}
 if ($xrf_page_subtitle != "") { $xrf_title_nugget = " - "; }
