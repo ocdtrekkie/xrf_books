@@ -23,6 +23,7 @@ if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physi
 if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
 if ($filter == "book") { $cond1 = " AND typecode = '' OR typecode = 'EB'"; $xrf_page_subtitle = "Books"; }
 if ($filter == "EVG") { $cond1 = " AND typecode = 'EVG'"; $xrf_page_subtitle = "Digitally Stored Games"; }
+if ($filter == "ESD") { $cond1 = " AND typecode = 'ESD'"; $xrf_page_subtitle = "Digitally Stored Software"; }
 if ($filter == "CDA") { $cond1 = " AND typecode = 'CDA'"; $xrf_page_subtitle = "Audio Discs"; }
 if ($filter == "CDG") { $cond1 = " AND typecode = 'CDG'"; $xrf_page_subtitle = "Game Discs"; }
 if ($filter == "CDS") { $cond1 = " AND typecode = 'CDS'"; $xrf_page_subtitle = "Software Discs"; }
@@ -151,7 +152,7 @@ $cata = $dewey;
 if ($sort == "loc")
 $cata = $lccat;
 
-if (($typecode != "EB" && $typecode != "EPER" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L"))
+if (($typecode != "EB" && $typecode != "EPER" && $typecode != "ESD" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L"))
 echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$aname</td></tr>";
 
 $qq++;

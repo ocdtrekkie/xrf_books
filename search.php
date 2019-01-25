@@ -19,7 +19,9 @@ require_once("includes/header.php");
 {
 echo "
 <option value=\"EB\">Electronic Books</option>
-<option value=\"EPER\">Electronic Magazines</option>";
+<option value=\"EPER\">Electronic Magazines</option>
+<option value=\"EVG\">Electronic Games</option>
+<option value=\"ESD\">Electronic Software</option>";
 } ?>
 <option value="CDS">Software CDs</option>
 <option value="CDG">Game CDs</option>

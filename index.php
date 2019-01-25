@@ -63,7 +63,8 @@ require_once("includes/header.php");
 {
 echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
 <a href=\"search_results.php?filter=EPER\">View Electronic Magazines</a><br>
-<a href=\"search_results.php?filter=EVG\">View Electronic Games</a><p>";
+<a href=\"search_results.php?filter=EVG\">View Electronic Games</a><br>
+<a href=\"search_results.php?filter=ESD\">View Electronic Software</a><p>";
 } ?>
 
 <a href="search_results.php?filter=CDS">View Computer - Software Discs</a><br>

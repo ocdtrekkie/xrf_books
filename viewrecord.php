@@ -26,7 +26,7 @@ $status = xrf_mysql_result($result,0,"status");
 $location = xrf_mysql_result($result,0,"location");
 $tags = xrf_mysql_result($result,0,"tags");
 
-if (($typecode == "EB" || $typecode == "EPER" || $typecode == "EVG") && xrf_has_uclass($xrf_myuclass,"L") == false)
+if (($typecode == "EB" || $typecode == "EPER" || $typecode == "ESD" || $typecode == "EVG") && xrf_has_uclass($xrf_myuclass,"L") == false)
 die("Not authorized!");
 
 if ($status == "rstrc" && $xrf_myulevel < 4)
