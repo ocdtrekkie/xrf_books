@@ -42,6 +42,51 @@ $descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 
+//Function xrfl_isbn10checker
+//Use: Function accepts either 10 or 9 digit number, and either provides or checks the validity of the 10th checksum digit. Optionally converts to ISBN 13 as well.
+//Credit: Roland Tanner @ http://trwa.ca/2012/02/php-isbn-10-to-isbn-13-converter/
+function xrfl_isbn10checker($input, $convert = FALSE){
+	$output = FALSE;
+	if (strlen($input) < 9){
+		$output = array('error'=>'ISBN too short.');
+	}
+	if (strlen($input) > 10){
+		$output = array('error'=>'ISBN too long.');
+	}
+	if (!$output){
+		$runningTotal = 0;
+		$r = 1;
+		$multiplier = 10;
+		for ($i = 0; $i < 10 ; $i++){
+			$nums[$r] = substr($input, $i, 1);
+			$r++;
+		}
+		$inputChecksum = array_pop($nums);
+		foreach($nums as $key => $value){
+			$runningTotal += $value * $multiplier;
+			//echo $value . 'x' . $multiplier . ' + ';
+			$multiplier --;
+			if ($multiplier === 1){
+				break;
+			}
+		}
+		//echo ' = ' . $runningTotal;
+		$remainder = $runningTotal % 11;
+		$checksum = $remainder == 1 ? 'X' : 11 - $remainder;
+		$checksum = $checksum == 11 ? 0 : $checksum;
+		$output = array('checksum'=>$checksum);
+		$output['isbn10'] = substr($input, 0, 9) . $checksum;
+		if ($convert){
+			$output['isbn13'] = xrfl_isbn10to13($output['isbn10']);
+		}
+		if ((is_numeric($inputChecksum) || $inputChecksum == 'X') && $inputChecksum != $checksum){
+			$output['error'] = 'Input checksum digit incorrect: ISBN not valid';
+			$output['input_checksum'] = $inputChecksum;
+		}
+	}
+	return $output;
+}
+
 //Function xrfl_isbn10hyp
 //Use: Hyphenates a 10-digit ISBN.
 function xrfl_isbn10hyp($isbn)
@@ -164,6 +209,57 @@ $isbna = $isbna . "-" . substr($isbn,9,1);
 return ($isbna);
 }
 
+//Function xrfl_isbn10to13
+//Use: Function returns the ISBN-13 of an ISBN-10.
+//Credit: Roland Tanner @ http://trwa.ca/2012/02/php-isbn-10-to-isbn-13-converter/
+function xrfl_isbn10to13($isbn10){
+	$isbnStem = strlen($isbn10) == 10 ? substr($isbn10, 0,9) : $isbn10;
+	$isbn13data = xrfl_isbn13checker('978' . $isbnStem);
+	return $isbn13data['isbn13'];
+}
+
+//Function xrfl_isbn13checker
+//Use: Function accepts either 12 or 13 digit number, and either provides or checks the validity of the 13th checksum digit. Optionally converts to ISBN 10 as well.
+//Credit: Roland Tanner @ http://trwa.ca/2012/02/php-isbn-10-to-isbn-13-converter/
+function xrfl_isbn13checker($input, $convert = FALSE){
+	$output = FALSE;
+	if (strlen($input) < 12){
+		$output = array('error'=>'ISBN too short.');
+	}
+	if (strlen($input) > 13){
+		$output = array('error'=>'ISBN too long.');
+	}
+	if (!$output){
+		$runningTotal = 0;
+		$r = 1;
+		$multiplier = 1;
+		for ($i = 0; $i < 13 ; $i++){
+			$nums[$r] = substr($input, $i, 1);
+			$r++;
+		}
+		$inputChecksum = array_pop($nums);
+		foreach($nums as $key => $value){
+			$runningTotal += $value * $multiplier;
+			$multiplier = $multiplier == 3 ? 1 : 3;
+		}
+		$div = $runningTotal / 10;
+		$remainder = $runningTotal % 10;
+
+		$checksum = $remainder == 0 ? 0 : 10 - substr($div, -1);
+
+		$output = array('checksum'=>$checksum);
+		$output['isbn13'] = substr($input, 0, 12) . $checksum;
+		if ($convert){
+			$output['isbn10'] = xrfl_isbn13to10($output['isbn13']);
+		}
+		if (is_numeric($inputChecksum) && $inputChecksum != $checksum){
+			$output['error'] = 'Input checksum digit incorrect: ISBN not valid';
+			$output['input_checksum'] = $inputChecksum;
+		}
+	}
+	return $output;
+}
+
 //Function xrfl_isbn13hyp
 //Use: Hyphenates a 13-digit ISBN.
 function xrfl_isbn13hyp($isbn)
@@ -171,6 +267,16 @@ function xrfl_isbn13hyp($isbn)
 $isbna = xrfl_isbn10hyp(substr($isbn,3,10));
 $isbnb = substr($isbn,0,3) . "-" . $isbna;
 return ($isbnb);
+}
+
+//Function xrfl_isbn13to10
+//Use: Function returns the ISBN-10 of an ISBN-13.
+//Credit: Roland Tanner @ http://trwa.ca/2012/02/php-isbn-10-to-isbn-13-converter/
+function xrfl_isbn13to10($isbn13){
+	$isbnStem = strlen($isbn13) == 13 ? substr($isbn13, 12) : $isbn13;
+	$isbnStem = substr($isbn13, -10);
+	$isbn10data = xrfl_isbn10checker($isbnStem);
+	return $isbn10data['isbn10'];
 }
 
 //Function xrfl_issnhyp
