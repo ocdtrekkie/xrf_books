@@ -4,9 +4,9 @@ require("modules/$modfolder/functions_lib.php");
 $do = $_GET['do'];
 if ($do == "add")
 {
-	$title = mysqli_real_escape_string($xrf_db, $_POST['title']);
+	$title = $_POST['title'];
 	$author_id = mysqli_real_escape_string($xrf_db, $_POST['author_id']);
-	$author_name = mysqli_real_escape_string($xrf_db, $_POST['author_name']);
+	$author_name = $_POST['author_name'];
 	$author_years = mysqli_real_escape_string($xrf_db, $_POST['author_years']);
 	$typecode = mysqli_real_escape_string($xrf_db, $_POST['typecode']);
 	$dewey = mysqli_real_escape_string($xrf_db, $_POST['dewey']);
@@ -52,7 +52,7 @@ else
 echo "<b>Add Book</b><p>";
 
 echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
-<table><tr><td><b>Title:</b></td><td><input type=\"text\" name=\"title\" size=\"45\"></td></tr>
+<table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\"></textarea></td></tr>
 <tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\"> <input type=\"text\" name=\"author_name\" size=\"22\"> <input type=\"text\" name=\"author_years\" size=\"9\"></td></tr>
 <tr><td><b>Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\"> <input type=\"text\" name=\"dewey\" size=\"37\"></td></tr>
 <tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\"> <input type=\"text\" name=\"copyright\" size=\"6\"></td></tr>
