@@ -24,11 +24,13 @@ if ($do == "add")
 	else { $location = "oakwd"; }
 	
 	if ($dewey == "") { $status = "uncat"; }
-	else { $status = "avail"; }
+	else { $status = "avail"; $dewey = str_replace("/","",trim($dewey)); }
 	
 	$isbn10 = str_replace("-","",trim($isbn10));
 	$isbn13 = str_replace("-","",trim($isbn13));
 	$issn = str_replace("-","",trim($issn));
+	$lccn = trim($lccn);
+	$lccat = trim($lccat);
 	
 	if ($isbn13 == "" && $isbn10 != "") { $isbn13 = xrfl_isbn10to13($isbn10); }
 	
@@ -49,7 +51,7 @@ if ($do == "add")
 }
 else
 {
-echo "<b>Add Book</b><p>";
+echo "<b>Add Library Media</b><p>";
 
 echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
 <table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\"></textarea></td></tr>
