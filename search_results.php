@@ -7,6 +7,8 @@ $filter = $_GET['filter'];
 $group = $_GET['group'];
 $author = $_GET['author'];
 $sort = $_GET['sort'];
+$limit = $_GET['limit'];
+$limit = (int)$limit;
 $issn = $_GET['issn'];
 
 $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
@@ -114,8 +116,12 @@ if ($sort == "" || $sort == "dewey")
 $sort1 = "dewey, title ASC";
 if ($sort == "loc")
 $sort1 = "lccat, title ASC";
+if ($sort == "recent")
+$sort1 = "barcode DESC";
 
-$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1";
+if ($limit != "") { $limit1 = " LIMIT $limit"; }
+
+$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1$limit1";
 $result = mysqli_query($xrf_db, $query);
 $num=mysqli_num_rows($result);
 
