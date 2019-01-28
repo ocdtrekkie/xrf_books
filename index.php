@@ -56,6 +56,12 @@ require_once("includes/header.php");
 </div>
 <br>
 <div align="center"><table><tr><td width=400>
+
+<?php if (xrf_has_uclass($xrf_myuclass,"L"))
+{
+echo "<a href=\"search_results.php?sort=recent&limit=100\">View Recently Added</a><p>";
+} ?>
+
 <a href="search_results.php?filter=B">View Books</a><br>
 <a href="search_results.php?filter=PER">View Magazines</a><p>
 

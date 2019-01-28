@@ -153,7 +153,7 @@ else
 $aname = "";
 }
 
-if ($sort == "" || $sort == "dewey")
+if ($sort == "" || $sort == "dewey" || $sort == "recent")
 $cata = $dewey;
 if ($sort == "loc")
 $cata = $lccat;
