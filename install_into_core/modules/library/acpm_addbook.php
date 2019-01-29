@@ -44,7 +44,7 @@ if ($do == "add")
 	}
 	
 	$addbook = mysqli_prepare($xrf_db, "INSERT INTO l_books (typecode, dewey, author, title, format, year, isbn10, isbn13, issn, lccn, lccat, status, location, tags) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)") or die(mysqli_error($xrf_db));
-	mysqli_stmt_bind_param($addbook,"sssssissssssss", $typecode, $dewey, $author_id, $title, $format, $copyright, $isbn10, $isbn13, $issn, $lccn, $lccat, $status, $location, $tags);
+	mysqli_stmt_bind_param($addbook,"ssssssssssssss", $typecode, $dewey, $author_id, $title, $format, $copyright, $isbn10, $isbn13, $issn, $lccn, $lccat, $status, $location, $tags);
 	mysqli_stmt_execute($addbook) or die(mysqli_error($xrf_db));
 	$book_id = mysqli_insert_id($xrf_db);
 	echo "Book added with barcode 44890000<b>" . $book_id . "</b>.";
