@@ -9,6 +9,7 @@ $author = $_GET['author'];
 $sort = $_GET['sort'];
 $limit = $_GET['limit'];
 $limit = (int)$limit;
+$view = $_GET['view'];
 $issn = $_GET['issn'];
 
 $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
@@ -158,8 +159,21 @@ $cata = $dewey;
 if ($sort == "loc")
 $cata = $lccat;
 
-if (($typecode != "EB" && $typecode != "EPER" && $typecode != "ESD" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L"))
+if (($typecode != "EB" && $typecode != "EPER" && $typecode != "ESD" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L")) {
+if ($view == "shelf")
+{
+	if ($qq == 0 || $qq % 4 == 0) { echo "<tr>"; }
+	echo "<td height=\"250\" width=\"250\" align=\"center\"><a href=\"viewrecord.php?barcode=$barcode\">";
+	$filename = "covers/$barcode.png"; 
+	if (file_exists($filename)) { 
+	echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title\" title=\"$title\" border=1>"; 
+	} else echo $title;
+	echo "</a></td>";
+	if ($qq % 4 == 3) { echo "</tr>"; }
+} else {
 echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$aname</td></tr>";
+}
+}
 
 $qq++;
 }
