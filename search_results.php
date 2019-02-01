@@ -152,6 +152,7 @@ $alink = "<a href=\"search_results.php?author=$author\">$aname</a>";
 else
 {
 $aname = "";
+$alink = "";
 }
 
 if ($sort == "" || $sort == "dewey" || $sort == "recent")
