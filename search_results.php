@@ -147,7 +147,7 @@ $barcode = $barcode + 448900000000;
 if ($author <> "")
 {
 $aname = xrfl_getauthor($xrf_db, $author);
-$aname = "<a href=\"search_results.php?author=$author\">$aname</a>";
+$alink = "<a href=\"search_results.php?author=$author\">$aname</a>";
 }
 else
 {
@@ -167,11 +167,11 @@ if ($view == "shelf")
 	$filename = "covers/$barcode.png"; 
 	if (file_exists($filename)) { 
 	echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title\" title=\"$title\" border=1>"; 
-	} else echo $title;
+	} else echo "<div class=\"bookcover\"><p>$title</p><p>$aname</p></div>";
 	echo "</a></td>";
 	if ($qq % 4 == 3) { echo "</tr>"; }
 } else {
-echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$aname</td></tr>";
+echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$alink</td></tr>";
 }
 }
 
