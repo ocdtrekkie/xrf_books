@@ -131,6 +131,8 @@ require_once("includes/header.php");
 
 echo "Results Found: $num<br>&nbsp;<br><table width=\"100%\">";
 
+if ($num <= 24 && $view != "list") { $view = "shelf"; }
+
 $qq=0;
 while ($qq < $num) {
 
@@ -163,12 +165,13 @@ $cata = $lccat;
 if (($typecode != "EB" && $typecode != "EPER" && $typecode != "ESD" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L")) {
 if ($view == "shelf")
 {
+	if ($typecode != "") { $typecode = " (" . $typecode . ")"; }
 	if ($qq == 0 || $qq % 4 == 0) { echo "<tr>"; }
 	echo "<td height=\"250\" width=\"250\" align=\"center\"><a href=\"viewrecord.php?barcode=$barcode\">";
 	$filename = "covers/$barcode.png"; 
 	if (file_exists($filename)) { 
-	echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title\" title=\"$title\" border=1>"; 
-	} else echo "<div class=\"bookcover\"><p>$title</p><p>$aname</p></div>";
+	echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title$typecode\" title=\"$title$typecode\" border=1>"; 
+	} else echo "<div class=\"bookcover\"><p>$title$typecode</p><p>$aname</p></div>";
 	echo "</a></td>";
 	if ($qq % 4 == 3) { echo "</tr>"; }
 } else {
