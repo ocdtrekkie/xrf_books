@@ -110,7 +110,7 @@ $isbna = $isbna . substr($isbn,1,5) . "-" . substr($isbn,6,3);
 if (substr($isbn,1,6) >= 900000 && substr($isbn,1,6) <= 949999)
 $isbna = $isbna . substr($isbn,1,6) . "-" . substr($isbn,7,2);
 
-if (substr($isbn,1,6) >= 9500000 && substr($isbn,1,6) <= 9999999)
+if (substr($isbn,1,7) >= 9500000 && substr($isbn,1,7) <= 9999999)
 $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 }
 
@@ -132,7 +132,7 @@ if (substr($isbn,1,6) >= 869800 && substr($isbn,1,6) <= 998999)
 $isbna = $isbna . substr($isbn,1,6) . "-" . substr($isbn,7,2);
 
 if (substr($isbn,1,7) >= 9990000 && substr($isbn,1,7) <= 9999999)
-$isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,7,2);
+$isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 }
 
 if (substr($isbn,0,1) == 2)
@@ -158,7 +158,7 @@ $isbna = $isbna . substr($isbn,1,5) . "-" . substr($isbn,6,3);
 if (substr($isbn,1,6) >= 900000 && substr($isbn,1,6) <= 949999)
 $isbna = $isbna . substr($isbn,1,6) . "-" . substr($isbn,7,2);
 
-if (substr($isbn,1,6) >= 9500000 && substr($isbn,1,6) <= 9999999)
+if (substr($isbn,1,7) >= 9500000 && substr($isbn,1,7) <= 9999999)
 $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 }
 
@@ -191,13 +191,13 @@ $isbna = $isbna . substr($isbn,1,5) . "-" . substr($isbn,6,3);
 if (substr($isbn,1,6) >= 900000 && substr($isbn,1,6) <= 949999)
 $isbna = $isbna . substr($isbn,1,6) . "-" . substr($isbn,7,2);
 
-if (substr($isbn,1,6) >= 9500000 && substr($isbn,1,6) <= 9539999)
+if (substr($isbn,1,7) >= 9500000 && substr($isbn,1,7) <= 9539999)
 $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 
 if (substr($isbn,1,5) >= 95400 && substr($isbn,1,5) <= 96999)
 $isbna = $isbna . substr($isbn,1,5) . "-" . substr($isbn,6,3);
 
-if (substr($isbn,1,6) >= 9700000 && substr($isbn,1,6) <= 9899999)
+if (substr($isbn,1,7) >= 9700000 && substr($isbn,1,7) <= 9899999)
 $isbna = $isbna . substr($isbn,1,7) . "-" . substr($isbn,8,1);
 
 if (substr($isbn,1,5) >= 99000 && substr($isbn,1,5) <= 99999)
