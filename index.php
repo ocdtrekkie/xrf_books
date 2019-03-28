@@ -59,39 +59,39 @@ require_once("includes/header.php");
 
 <?php if (xrf_has_uclass($xrf_myuclass,"L"))
 {
-echo "<a href=\"search_results.php?sort=recent&limit=100\">View Recently Added</a><p>";
+echo "<a href=\"search_results.php?sort=recent&limit=100\">Recently Added</a><p>";
 } ?>
 
-<a href="search_results.php?filter=B">View Books</a><br>
-<a href="search_results.php?filter=PER">View Magazines</a><p>
+<a href="search_results.php?filter=B">Books</a><br>
+<a href="search_results.php?filter=PER">Magazines</a><p>
 
 <?php if (xrf_has_uclass($xrf_myuclass,"L"))
 {
-echo "<a href=\"search_results.php?filter=EB\">View Electronic Books</a><br>
-<a href=\"search_results.php?filter=EPER\">View Electronic Magazines</a><br>
-<a href=\"search_results.php?filter=EVG\">View Electronic Games</a><br>
-<a href=\"search_results.php?filter=ESD\">View Electronic Software</a><p>";
+echo "<a href=\"search_results.php?filter=EB\">Electronic Books</a><br>
+<a href=\"search_results.php?filter=EPER\">Electronic Magazines</a><br>
+<a href=\"search_results.php?filter=EVG\">Electronic Games</a><br>
+<a href=\"search_results.php?filter=ESD\">Electronic Software</a><p>";
 } ?>
 
-<a href="search_results.php?filter=CDS">View Computer - Software Discs</a><br>
-<a href="search_results.php?filter=CDG">View Computer - Game Discs</a><br>
-<a href="search_results.php?filter=CDL">View Computer - Library Discs</a></td>
+<a href="search_results.php?filter=CDS">Computer - Software Discs</a><br>
+<a href="search_results.php?filter=CDG">Computer - Game Discs</a><br>
+<a href="search_results.php?filter=CDL">Computer - Library Discs</a></td>
 
 <td width=400>
-<a href="search_results.php?filter=VG">View Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
-<a href="search_results.php?filter=CDA">View Audio CDs</a><br>
-<a href="search_results.php?filter=DVD">View DVDs</a><br>
-<a href="search_results.php?filter=BD">View Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=4K">4K</a>)<p>
+<a href="search_results.php?filter=VG">Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
+<a href="search_results.php?filter=CDA">Audio CDs</a><br>
+<a href="search_results.php?filter=DVD">DVDs</a><br>
+<a href="search_results.php?filter=BD">Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=4K">4K</a>)<p>
 
-<a href="search_results.php?filter=GG">View Game Guides</a><br>
-<a href="search_results.php?filter=GD">View Game Development Books</a>
+<a href="search_results.php?filter=GG">Game Guides</a><br>
+<a href="search_results.php?filter=GD">Game Development Books</a>
 
 <?php if ($xrf_myulevel >= 3)
 {
-echo "<p><a href=\"search_results.php?filter=uncat\">View Materials set to Uncategorized</a><br>
-<a href=\"search_results.php?filter=trace\">View Materials set to Trace</a><br>
-<a href=\"search_results.php?filter=chked\">View Materials set to Checked Out</a><br>
-<a href=\"search_results.php?filter=dmged\">View Materials set to Damaged</a>";
+echo "<p><a href=\"search_results.php?filter=uncat\">Materials set to Uncategorized</a><br>
+<a href=\"search_results.php?filter=trace\">Materials set to Trace</a><br>
+<a href=\"search_results.php?filter=chked\">Materials set to Checked Out</a><br>
+<a href=\"search_results.php?filter=dmged\">Materials set to Damaged</a>";
 } ?>
 
 </td></tr></table></div>
