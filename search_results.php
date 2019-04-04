@@ -22,6 +22,7 @@ if ($searchgroup != "") $group = $searchgroup;
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
 if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
 if ($filter == "GD") { $cond1 = " AND tags LIKE '%game development%'"; $xrf_page_subtitle = "Game Development Books"; }
+if ($filter == "manga") { $cond1 = " AND tags LIKE '%manga%'"; $xrf_page_subtitle = "Manga"; }
 if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
 if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
 if ($filter == "book") { $cond1 = " AND typecode = '' OR typecode = 'EB'"; $xrf_page_subtitle = "Books"; }

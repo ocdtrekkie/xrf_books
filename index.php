@@ -59,7 +59,7 @@ require_once("includes/header.php");
 
 <?php if (xrf_has_uclass($xrf_myuclass,"L"))
 {
-echo "<a href=\"search_results.php?sort=recent&limit=100\">Recently Added</a><p>";
+echo "<a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently Added</a><p>";
 } ?>
 
 <a href="search_results.php?filter=B">Books</a><br>
@@ -79,12 +79,13 @@ echo "<a href=\"search_results.php?filter=EB\">Electronic Books</a><br>
 
 <td width=400>
 <a href="search_results.php?filter=VG">Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
-<a href="search_results.php?filter=CDA">Audio CDs</a><br>
-<a href="search_results.php?filter=DVD">DVDs</a><br>
-<a href="search_results.php?filter=BD">Blu-ray Discs</a> (<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=4K">4K</a>)<p>
+<a href="search_results.php?filter=video">Movies</a> (<a href="search_results.php?filter=4K">4K</a>|<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=BD">Blu-ray Discs</a>|<a href="search_results.php?filter=DVD">DVDs</a>)<br>
+<a href="search_results.php?filter=CDA">Audio CDs</a><p>
 
 <a href="search_results.php?filter=GG">Game Guides</a><br>
-<a href="search_results.php?filter=GD">Game Development Books</a>
+<a href="search_results.php?filter=GD">Game Development Books</a><p>
+
+<a href="search_results.php?filter=manga&view=shelf">Manga</a>
 
 <?php if ($xrf_myulevel >= 3)
 {
