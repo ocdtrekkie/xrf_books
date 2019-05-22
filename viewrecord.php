@@ -87,7 +87,7 @@ if(mysqli_num_rows($result) != 0){
 
 if ($xrf_myulevel > 2) {
 
-echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\">[Add to Reading List] ";
+echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"add_to_reading_list.php?passid=$smallcode\">[Add to Reading List]</a> ";
 
 if ($xrf_myulevel > 3) {
 echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
