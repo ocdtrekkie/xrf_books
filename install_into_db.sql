@@ -49,6 +49,14 @@ CREATE TABLE IF NOT EXISTS `l_locations` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Locations of library materials';
 
+CREATE TABLE IF NOT EXISTS `l_readlist` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `uid` int(8) NOT NULL COMMENT 'User ID',
+  `bookid` int(12) NOT NULL COMMENT 'Item ID',
+  `date` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Date added to reading list',
+  PRIMARY KEY (`id`),
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='List of materials on reading lists';
+
 CREATE TABLE IF NOT EXISTS `l_serials` (
   `barcode` int(12) NOT NULL,
   `serial` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
