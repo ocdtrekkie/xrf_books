@@ -73,7 +73,7 @@ echo "LCCN: <a href=\"https://lccn.loc.gov/$lccn\" target=\"_blank\">$lccn</a><b
 if ($lccat != "")
 echo "LC Cat: $lccat<br>";
 
-if (($typecode == "CDG" || $typecode == "EVG"){
+if ($typecode == "CDG" || $typecode == "EVG"){
 $query = "SELECT * FROM l_externals WHERE barcode = '$smallcode'";
 $result = mysqli_query($xrf_db, $query);
 if(mysqli_num_rows($result) != 0){
