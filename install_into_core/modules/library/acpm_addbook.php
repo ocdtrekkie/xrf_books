@@ -19,6 +19,7 @@ if ($do == "add")
 	$lccat = mysqli_real_escape_string($xrf_db, $_POST['lccat']);
 	$tags = mysqli_real_escape_string($xrf_db, $_POST['tags']);
 	$serial = mysqli_real_escape_string($xrf_db, $_POST['serial']);
+	$steam_id = mysqli_real_escape_string($xrf_db, $_POST['steam_id']);
 	
 	if ($typecode == "EB" || $typecode == "EPER") { $location = "lgdrv"; }
 	elseif ($typecode == "ESD" || $typecode == "EVG") { $location = "gmdrv"; }
@@ -56,6 +57,13 @@ if ($do == "add")
 		echo "<br>Serial added to database.";
 	}
 	
+	if ($steam_id != "") {
+		$addsteamid = mysqli_prepare($xrf_db, "INSERT INTO l_externals (barcode, steam_id) VALUES(?,?)") or die(mysqli_error($xrf_db));
+		mysqli_stmt_bind_param($addsteamid,"ii", $book_id, $steam_id);
+		mysqli_stmt_execute($addsteamid) or die(mysqli_error($xrf_db));
+		echo "<br>Steam ID added to database.";
+	}
+	
 	echo "<p><a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook\">Add another book?</a></p>";
 }
 else
@@ -71,6 +79,7 @@ echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&
 <tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\"> <input type=\"text\" name=\"lccat\" size=\"25\"></td></tr>
 <tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\"></textarea></tr>
 <tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
+<tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
 <tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
 }
 ?>
