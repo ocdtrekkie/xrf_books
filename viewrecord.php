@@ -73,6 +73,15 @@ echo "LCCN: <a href=\"https://lccn.loc.gov/$lccn\" target=\"_blank\">$lccn</a><b
 if ($lccat != "")
 echo "LC Cat: $lccat<br>";
 
+if (($typecode == "CDG" || $typecode == "EVG"){
+$query = "SELECT * FROM l_externals WHERE barcode = '$smallcode'";
+$result = mysqli_query($xrf_db, $query);
+if(mysqli_num_rows($result) != 0){
+  $steam_id = xrf_mysql_result($result,0,"steam_id");
+  echo "Steam: <a href=\"https://store.steampowered.com/app/$steam_id\">$steam_id</a><br>";
+}
+}
+
 if ($xrf_myulevel > 3)
 {
 echo "<p>Tags: $tags</p>";
