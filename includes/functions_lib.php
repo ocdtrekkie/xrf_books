@@ -22,6 +22,16 @@ if ($years == "") { return ($name); }
 else { return ($name . " " . $years); }
 }
 
+//Function xrfl_getperiodical
+//Use: Returns the full name of a periodical.
+function xrfl_getperiodical($xrf_db, $issn)
+{
+$query="SELECT title FROM l_periodicals WHERE issn='$issn'";
+$result=mysqli_query($xrf_db, $query);
+$name=xrf_mysql_result($result,0,"title");
+return ($name);
+}
+
 //Function xrfl_getstatus
 //Use: Returns the full name of a status.
 function xrfl_getstatus($xrf_db, $code)

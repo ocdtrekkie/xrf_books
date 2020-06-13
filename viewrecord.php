@@ -40,7 +40,13 @@ $isbn10 = xrfl_isbn10hyp($isbn10);
 if ($isbn13 != "" && strlen(xrfl_isbn13hyp($isbn13)) > 13)
 $isbn13 = xrfl_isbn13hyp($isbn13);
 if ($issn != "")
+{
 $issnhyp = xrfl_issnhyp($issn);
+$issnname = xrfl_getperiodical($xrf_db, $issn);
+if ($issnname != "")
+	$issnhyp = "$issnname ($issnhyp)";
+}
+}
 
 $status = xrfl_getstatus($xrf_db, $status);
 $location = xrfl_getlocation($xrf_db, $location);
