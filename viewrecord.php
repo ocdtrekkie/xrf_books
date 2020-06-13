@@ -46,7 +46,6 @@ $issnname = xrfl_getperiodical($xrf_db, $issn);
 if ($issnname != "")
 	$issnhyp = "$issnname ($issnhyp)";
 }
-}
 
 $status = xrfl_getstatus($xrf_db, $status);
 $location = xrfl_getlocation($xrf_db, $location);
