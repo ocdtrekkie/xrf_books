@@ -57,9 +57,10 @@ require_once("includes/header.php");
 <br>
 <div align="center"><table><tr><td width=400>
 
-<?php if (xrf_has_uclass($xrf_myuclass,"L"))
+<?php if ($xrf_myulevel > 2)
 {
-echo "<a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently Added</a><p>";
+echo "<a href=\"reading_list.php\">Your Reading List</a><br>
+<a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently Added</a><p>";
 } ?>
 
 <a href="search_results.php?filter=B">Books</a><br>
