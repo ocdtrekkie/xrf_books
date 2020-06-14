@@ -18,6 +18,7 @@ if ($do == "add")
 	$lccn = mysqli_real_escape_string($xrf_db, $_POST['lccn']);
 	$lccat = mysqli_real_escape_string($xrf_db, $_POST['lccat']);
 	$tags = mysqli_real_escape_string($xrf_db, $_POST['tags']);
+	$series = mysqli_real_escape_string($xrf_db, $_POST['series']);
 	$serial = mysqli_real_escape_string($xrf_db, $_POST['serial']);
 	$steam_id = mysqli_real_escape_string($xrf_db, $_POST['steam_id']);
 	
@@ -50,6 +51,17 @@ if ($do == "add")
 	$book_id = mysqli_insert_id($xrf_db);
 	echo "Book added with barcode 44890000<b>" . $book_id . "</b>.";
 	
+	if ($issn != "" && $series != "" && xrfl_getperiodical($xrf_db, $issn) == "") {
+		if ($typecode == "EPER") {
+		$addseries = mysqli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title, lccn, lccat) VALUES(?,?)") or die(mysqli_error($xrf_db));
+		mysqli_stmt_bind_param($addseries,"ssss", $issn, $series, $lccn, $lccat); }
+		else {
+		$addseries = mysli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title) VALUES(?,?)") or die(mysqli_error($xrf_db));
+		mysqli_stmt_bind_param($addseries,"ss", $issn, $series); }
+		mysqli_stmt_execute($addseries) or die(mysqli_error($xrf_db));
+		echo "<br>ISSN added to database.";
+	}
+	
 	if ($serial != "") {
 		$addserial = mysqli_prepare($xrf_db, "INSERT INTO l_serials (barcode, serial) VALUES(?,?)") or die(mysqli_error($xrf_db));
 		mysqli_stmt_bind_param($addserial,"is", $book_id, $serial);
@@ -78,6 +90,7 @@ echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&
 <tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\"> <input type=\"text\" name=\"isbn13\" size=\"16\"> <input type=\"text\" name=\"issn\" size=\"7\"></td></tr>
 <tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\"> <input type=\"text\" name=\"lccat\" size=\"25\"></td></tr>
 <tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\"></textarea></tr>
+<tr><td><b>Series:</b></td><td><input type=\"text\" name=\"series\" size=\"44\"></td></tr>
 <tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
 <tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
 <tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
