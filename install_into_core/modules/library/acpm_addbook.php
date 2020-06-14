@@ -53,7 +53,7 @@ if ($do == "add")
 	
 	if ($issn != "" && $series != "" && xrfl_getperiodical($xrf_db, $issn) == "") {
 		if ($typecode == "EPER") {
-		$addseries = mysqli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title, lccn, lccat) VALUES(?,?)") or die(mysqli_error($xrf_db));
+		$addseries = mysqli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title, lccn, lccat) VALUES(?,?,?,?)") or die(mysqli_error($xrf_db));
 		mysqli_stmt_bind_param($addseries,"ssss", $issn, $series, $lccn, $lccat); }
 		else {
 		$addseries = mysli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title) VALUES(?,?)") or die(mysqli_error($xrf_db));
