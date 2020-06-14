@@ -56,7 +56,7 @@ if ($do == "add")
 		$addseries = mysqli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title, lccn, lccat) VALUES(?,?,?,?)") or die(mysqli_error($xrf_db));
 		mysqli_stmt_bind_param($addseries,"ssss", $issn, $series, $lccn, $lccat); }
 		else {
-		$addseries = mysli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title) VALUES(?,?)") or die(mysqli_error($xrf_db));
+		$addseries = mysqli_prepare($xrf_db, "INSERT INTO l_periodicals (issn, title) VALUES(?,?)") or die(mysqli_error($xrf_db));
 		mysqli_stmt_bind_param($addseries,"ss", $issn, $series); }
 		mysqli_stmt_execute($addseries) or die(mysqli_error($xrf_db));
 		echo "<br>ISSN added to database.";
