@@ -63,12 +63,11 @@ echo "<a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently A
 } ?>
 
 <a href="search_results.php?filter=B">Books</a><br>
-<a href="search_results.php?filter=PER">Magazines</a><p>
+<a href="serials.php">Serials and Periodicals</a><p>
 
 <?php if (xrf_has_uclass($xrf_myuclass,"L"))
 {
 echo "<a href=\"search_results.php?filter=EB\">Electronic Books</a><br>
-<a href=\"search_results.php?filter=EPER\">Electronic Magazines</a><br>
 <a href=\"search_results.php?filter=EVG&view=shelf\">Electronic Games</a><br>
 <a href=\"search_results.php?filter=ESD\">Electronic Software</a><p>";
 } ?>
