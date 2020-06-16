@@ -16,8 +16,10 @@ $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
 $searchwhat = mysqli_real_escape_string($xrf_db, $_POST['searchwhat']);
 $searchfilter = mysqli_real_escape_string($xrf_db, $_POST['searchfilter']);
 $searchgroup = mysqli_real_escape_string($xrf_db, $_POST['searchgroup']);
+$searchview = mysqli_real_escape_string($xrf_db, $_POST['searchview']);
 if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
+if ($searchview != "") $view = $searchview;
 
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
 if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }

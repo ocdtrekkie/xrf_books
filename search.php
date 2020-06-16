@@ -47,6 +47,11 @@ echo "
 <option value="F">F</option>
 <option value="J">J</option>
 <option value="PB">PB</option>
+</select>
+<p>View: <select name="searchview">
+<option value=""></option>
+<option value="shelf">Bookshelf</option>
+<option value="list">Detail List</option>
 </select></form>
 
 <?php
