@@ -21,7 +21,7 @@ if ($xrf_myulevel > 2) {
 			$typecode = xrf_mysql_result($result,0,"typecode");
 			$author = xrf_mysql_result($result,0,"author");
 			$title = xrf_mysql_result($result,0,"title");
-			$barcode = $barcode + 448900000000;
+			$barcode = $barcode + $xrfl_library_barcode;
 			if ($author <> "")
 			{
 			$aname = xrfl_getauthor($xrf_db, $author);
