@@ -114,7 +114,11 @@ $cond4 = " AND (isbn10 = '$searchterm' OR isbn13 = '$searchterm' OR issn = '$sea
 }
 
 if ($issn != "")
-$cond5 = " AND issn = '$issn'";
+{
+	$issn = (int)$issn;
+	$cond5 = " AND issn = '$issn'";
+	$xrf_page_subtitle = xrfl_getperiodical($xrf_db, $issn);
+}
 
 if ($sort == "" || $sort == "dewey")
 $sort1 = "dewey, title ASC";
