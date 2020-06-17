@@ -107,6 +107,7 @@ if ($xrf_myulevel > 3) {
 echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
 
 	if ($typecode == "EB" || $typecode == "EPER") {
+		echo "<a href=\"$xrfl_library_remote_mailto$barcode\">[Remote Check Out]</a> ";
 		if ($format == "1 File (CHM)") {
 			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.chm\">[Open Locally]</a>";
 		}
