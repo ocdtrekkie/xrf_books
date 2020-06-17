@@ -136,7 +136,7 @@ $num=mysqli_num_rows($result);
 if ($xrf_page_subtitle == "") { $xrf_page_subtitle = "Search Results"; }
 require_once("includes/header.php");
 
-echo "Results Found: $num<br>&nbsp;<br><table width=\"100%\">";
+echo "$xrf_page_subtitle<br>Results Found: $num<br>&nbsp;<br><table width=\"100%\">";
 
 if ($num <= 24 && $view != "list") { $view = "shelf"; }
 
