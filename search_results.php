@@ -148,7 +148,7 @@ $format = xrf_mysql_result($result,$qq,"format");
 $isbn10 = xrf_mysql_result($result,$qq,"isbn10");
 $isbn13 = xrf_mysql_result($result,$qq,"isbn13");
 $lccat = xrf_mysql_result($result,$qq,"lccat");
-$barcode = $barcode + 448900000000;
+$barcode = $barcode + $xrfl_library_barcode;
 if ($author <> "")
 {
 $aname = xrfl_getauthor($xrf_db, $author);

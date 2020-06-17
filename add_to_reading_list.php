@@ -3,7 +3,7 @@ require_once("includes/global.php");
 require_once("includes/header.php");
 
 $bookid = (int)$_GET['passid'];
-$barcode = 448900000000 + $bookid;
+$barcode = $bookid + $xrfl_library_barcode;
 
 if ($xrf_myulevel > 2) {
 	$addtolist = mysqli_prepare($xrf_db, "INSERT INTO l_readlist (uid, bookid, date) VALUES(?, ?, NOW())");
