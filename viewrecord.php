@@ -106,24 +106,29 @@ echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"add_to_readin
 if ($xrf_myulevel > 3) {
 echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
 
-if ($format == "1 File (CHM)") {
-	echo "<a href=\"file:///S:/Library/$barcode.chm\">[Open Locally]</a>";
-}
-if ($format == "1 File (EPUB)") {
-	echo "<a href=\"file:///S:/Library/$barcode.epub\">[Open Locally]</a>";
-}
-if ($format == "1 File (LIT)") {
-	echo "<a href=\"file:///S:/Library/$barcode.lit\">[Open Locally]</a>";
-}
-if ($format == "1 File (MOBI)") {
-	echo "<a href=\"file:///S:/Library/$barcode.mobi\">[Open Locally]</a>";
-}
-if ($format == "1 File (PDF)") {
-	echo "<a href=\"file:///S:/Library/$barcode.pdf\">[Open Locally]</a>";
-}
-if (strpos($format, "Files") !== FALSE) {
-	echo "<a href=\"file:///S:/Library/$barcode\">[Open Locally]</a>";
-}
+	if ($typecode == "EB" || $typecode == "EPER") {
+		if ($format == "1 File (CHM)") {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.chm\">[Open Locally]</a>";
+		}
+		if ($format == "1 File (EPUB)") {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.epub\">[Open Locally]</a>";
+		}
+		if ($format == "1 File (LIT)") {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.lit\">[Open Locally]</a>";
+		}
+		if ($format == "1 File (MOBI)") {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.mobi\">[Open Locally]</a>";
+		}
+		if ($format == "1 File (PDF)") {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode.pdf\">[Open Locally]</a>";
+		}
+		if (strpos($format, "Files") !== FALSE) {
+			echo "<a href=\"file:///$xrfl_library_local_repository/$barcode\">[Open Locally]</a>";
+		}
+	}
+	if ($typecode == "EVG" || $typecode == "ESD") {
+		echo "<a href=\"file:///$xrfl_library_local_repository2/$barcode\">[Open Locally]</a>";
+	}
 }
 
 echo "</font></p>";
