@@ -113,9 +113,8 @@ if ($searchwhat == "numbers")
 $cond4 = " AND (isbn10 = '$searchterm' OR isbn13 = '$searchterm' OR issn = '$searchterm' OR lccn = '$searchterm')";
 }
 
-if ($issn != "")
+if ($issn != "" && is_numeric($issn))
 {
-	$issn = (int)$issn;
 	$cond5 = " AND issn = '$issn'";
 	$xrf_page_subtitle = xrfl_getperiodical($xrf_db, $issn);
 }
