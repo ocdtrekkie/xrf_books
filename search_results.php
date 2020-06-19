@@ -26,7 +26,6 @@ if ($searchview != "") $view = $searchview;
 if ($searchlocation != "") $location = $searchlocation;
 
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
-if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
 if ($filter == "video") { $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'"; $xrf_page_subtitle = "Movies"; }
 if ($filter == "3D") { $cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'"; $xrf_page_subtitle = "3D Blu-rays"; }
 if ($filter == "4K") { $cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'"; $xrf_page_subtitle = "4K Blu-rays"; }
@@ -115,7 +114,7 @@ if ($type != "")
 {
 	if ($type == "0") { $type = ""; }
 	$cond7 = " AND typecode = '$type'";
-	//TODO: Add xrfl_gettype and add subtitle here
+	$xrf_page_subtitle = xrfl_gettype($xrf_db, $type);
 }
 
 if ($sort == "" || $sort == "dewey")

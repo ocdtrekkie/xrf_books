@@ -22,6 +22,16 @@ if ($years == "") { return ($name); }
 else { return ($name . " " . $years); }
 }
 
+//Function xrfl_getlocation
+//Use: Returns the full name of a location.
+function xrfl_getlocation($xrf_db, $code)
+{
+$query="SELECT descr FROM l_locations WHERE code='$code'";
+$result=mysqli_query($xrf_db, $query);
+$descr=xrf_mysql_result($result,0,"descr");
+return ($descr);
+}
+
 //Function xrfl_getperiodical
 //Use: Returns the full name of a periodical.
 function xrfl_getperiodical($xrf_db, $issn)
@@ -42,11 +52,11 @@ $descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
 }
 
-//Function xrfl_getlocation
-//Use: Returns the full name of a location.
-function xrfl_getlocation($xrf_db, $code)
+//Function xrfl_gettype
+//Use: Returns the full name of a type.
+function xrfl_gettype($xrf_db, $code)
 {
-$query="SELECT descr FROM l_locations WHERE code='$code'";
+$query="SELECT descr FROM l_typecodes WHERE code='$code'";
 $result=mysqli_query($xrf_db, $query);
 $descr=xrf_mysql_result($result,0,"descr");
 return ($descr);
