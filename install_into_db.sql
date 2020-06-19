@@ -78,3 +78,11 @@ CREATE TABLE IF NOT EXISTS `l_statuses` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Statuses for library materials';
+
+CREATE TABLE IF NOT EXISTS `l_typecodes` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `descr` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Types of library materials';
