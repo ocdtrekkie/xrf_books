@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `l_typecodes` (
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `descr` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `default_location` varchar(5) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Location code to assign this type',
+  `access_level` VARCHAR(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' COMMENT 'The ulevel or uclass required to see a type.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Types of library materials';
