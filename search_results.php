@@ -12,6 +12,7 @@ $limit = (int)$limit;
 $view = $_GET['view'];
 $issn = $_GET['issn'];
 $location = mysqli_real_escape_string($xrf_db, $_GET['location']);
+$type = mysqli_real_escape_string($xrf_db, $_GET['type']);
 
 $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
 $searchwhat = mysqli_real_escape_string($xrf_db, $_POST['searchwhat']);
@@ -19,33 +20,16 @@ $searchtype = mysqli_real_escape_string($xrf_db, $_POST['searchtype']);
 $searchgroup = mysqli_real_escape_string($xrf_db, $_POST['searchgroup']);
 $searchview = mysqli_real_escape_string($xrf_db, $_POST['searchview']);
 $searchlocation = mysqli_real_escape_string($xrf_db, $_POST['searchlocation']);
-if ($searchtype != "") $filter = $searchtype;
+if ($searchtype != "") $type = $searchtype;
 if ($searchgroup != "") $group = $searchgroup;
 if ($searchview != "") $view = $searchview;
 if ($searchlocation != "") $location = $searchlocation;
 
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
-if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
-if ($filter == "GD") { $cond1 = " AND tags LIKE '%game development%'"; $xrf_page_subtitle = "Game Development Books"; }
-if ($filter == "manga") { $cond1 = " AND tags LIKE '%manga%'"; $xrf_page_subtitle = "Manga"; }
 if ($filter == "B") { $cond1 = " AND typecode = ''"; $xrf_page_subtitle = "Physical Books"; }
-if ($filter == "EB") { $cond1 = " AND typecode = 'EB'"; $xrf_page_subtitle = "Electronic Books"; }
-if ($filter == "book") { $cond1 = " AND typecode = '' OR typecode = 'EB'"; $xrf_page_subtitle = "Books"; }
-if ($filter == "EVG") { $cond1 = " AND typecode = 'EVG'"; $xrf_page_subtitle = "Digitally Stored Games"; }
-if ($filter == "ESD") { $cond1 = " AND typecode = 'ESD'"; $xrf_page_subtitle = "Digitally Stored Software"; }
-if ($filter == "CDA") { $cond1 = " AND typecode = 'CDA'"; $xrf_page_subtitle = "Audio Discs"; }
-if ($filter == "CDG") { $cond1 = " AND typecode = 'CDG'"; $xrf_page_subtitle = "Game Discs"; }
-if ($filter == "CDS") { $cond1 = " AND typecode = 'CDS'"; $xrf_page_subtitle = "Software Discs"; }
-if ($filter == "CDL") { $cond1 = " AND typecode = 'CDL'"; $xrf_page_subtitle = "Library Discs"; }
-if ($filter == "DVD") { $cond1 = " AND typecode = 'DVD'"; $xrf_page_subtitle = "DVDs"; }
-if ($filter == "BD") { $cond1 = " AND typecode = 'BD'"; $xrf_page_subtitle = "Blu-rays"; }
 if ($filter == "video") { $cond1 = " AND typecode = 'DVD' OR typecode = 'BD'"; $xrf_page_subtitle = "Movies"; }
 if ($filter == "3D") { $cond1 = " AND typecode = 'BD' AND tags LIKE '3d%'"; $xrf_page_subtitle = "3D Blu-rays"; }
 if ($filter == "4K") { $cond1 = " AND typecode = 'BD' AND tags LIKE '4k%'"; $xrf_page_subtitle = "4K Blu-rays"; }
-if ($filter == "VG") { $cond1 = " AND typecode = 'VG'"; $xrf_page_subtitle = "Video Games"; }
-if ($filter == "PER") { $cond1 = " AND typecode = 'PER'"; $xrf_page_subtitle = "Physical Magazines"; }
-if ($filter == "EPER") { $cond1 = " AND typecode = 'EPER'"; $xrf_page_subtitle = "Electronic Magazines"; }
-if ($filter == "mag") { $cond1 = " AND typecode = 'PER' OR typecode = 'EPER'"; $xrf_page_subtitle = "Magazines"; }
 if ($filter == "trace") { $cond1 = " AND status = 'trace'"; $xrf_page_subtitle = "Materials set to Trace"; }
 if ($filter == "chked") { $cond1 = " AND status = 'chked'"; $xrf_page_subtitle = "Materials set to Checked Out"; }
 if ($filter == "dmged") { $cond1 = " AND status = 'dmged'"; $xrf_page_subtitle = "Materials set to Damaged"; }
@@ -127,6 +111,12 @@ if ($location != "")
 	$xrf_page_subtitle = xrfl_getlocation($xrf_db, $location);
 }
 
+if ($type != "")
+{
+	$cond7 = " AND typecode = '$type'";
+	//TODO: Add xrfl_gettype and add subtitle here
+}
+
 if ($sort == "" || $sort == "dewey")
 $sort1 = "dewey, title ASC";
 if ($sort == "loc")
@@ -136,7 +126,7 @@ $sort1 = "barcode DESC";
 
 if ($limit != "") { $limit1 = " LIMIT $limit"; }
 
-$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5$cond6 ORDER BY $sort1$limit1";
+$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5$cond6$cond7 ORDER BY $sort1$limit1";
 $result = mysqli_query($xrf_db, $query);
 $num=mysqli_num_rows($result);
 
