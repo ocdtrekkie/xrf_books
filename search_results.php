@@ -113,6 +113,7 @@ if ($location != "")
 
 if ($type != "")
 {
+	if ($type == "0") { $type = ""; }
 	$cond7 = " AND typecode = '$type'";
 	//TODO: Add xrfl_gettype and add subtitle here
 }

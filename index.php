@@ -72,6 +72,7 @@ while ($typ < $typesnum) {
 	$typdescr = xrf_mysql_result($typesresult,$typ,"descr");
 	$typaccess = xrf_mysql_result($typesresult,$typ,"access_level");
 	if (($typaccess == "L" && xrf_has_uclass($xrf_myuclass,"L")) || (is_numeric($typaccess) && $typaccess <= $xrf_myulevel)) {
+		if ($typcode == "") { $typcode = "0"; }
 		echo "<a href=\"search_results.php?type=$typcode\">$typdescr</a><br>";
 	}
 	$typ++;
