@@ -95,6 +95,7 @@ $cond4 = " AND title LIKE '%$searchterm%'";
 }
 if ($searchwhat == "numbers")
 {
+$searchterm = str_replace("-","",trim($searchterm));
 $cond4 = " AND (isbn10 = '$searchterm' OR isbn13 = '$searchterm' OR issn = '$searchterm' OR lccn = '$searchterm')";
 }
 
