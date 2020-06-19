@@ -80,8 +80,7 @@ while ($typ < $typesnum) {
 </td>
 
 <td width=400>
-<a href="search_results.php?type=VG">Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
-<a href="search_results.php?filter=video">Movies</a> (<a href="search_results.php?filter=4K">4K</a>|<a href="search_results.php?filter=3D">3D</a>)
+<a href="search_results.php?type=VG">Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)
 
 <?php if ($xrf_myulevel >= 3)
 {
