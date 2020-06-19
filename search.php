@@ -11,26 +11,20 @@ require_once("includes/header.php");
 <option value="title">Title</option>
 <option value="numbers">ISBN/ISSN/LCCN</option>
 </select>
-<p>Filter: <select name="searchfilter">
-<option value=""></option>
-<option value="B">Books</option>
-<option value="PER">Magazines</option>
-<?php if (xrf_has_uclass($xrf_myuclass,"L"))
-{
-echo "
-<option value=\"EB\">Electronic Books</option>
-<option value=\"EPER\">Electronic Magazines</option>
-<option value=\"EVG\">Electronic Games</option>
-<option value=\"ESD\">Electronic Software</option>";
-} ?>
-<option value="CDS">Software CDs</option>
-<option value="CDG">Game CDs</option>
-<option value="CDL">Library CDs</option>
-<option value="VG">Video Games</option>
-<option value="CDA">Audio CDs</option>
-<option value="DVD">DVDs</option>
-<option value="BD">Blu-ray Discs</option>
-</select>
+
+<p>Type: <select name="searchtype">
+<option value=""></option><?php
+$typesquery = "SELECT * FROM l_typecodes ORDER BY id ASC";
+$typesresult = mysqli_query($xrf_db, $typesquery);
+$typesnum=mysqli_num_rows($typesresult);
+$typ=0;
+while ($typ < $typesnum) {
+	$typcode = xrf_mysql_result($typesresult,$typ,"code");
+	$typdescr = xrf_mysql_result($typesresult,$typ,"descr");
+	echo "<option value=\"$typcode\">$typdescr</option>";
+	$typ++;
+} ?></select>
+
 <br>Catalog Group: <select name="searchgroup">
 <option value=""></option>
 <option value="000">000s</option>
@@ -60,14 +54,13 @@ while ($loc < $locationsnum) {
 	$locdescr = xrf_mysql_result($locationsresult,$loc,"descr");
 	echo "<option value=\"$loccode\">$locdescr</option>";
 	$loc++;
-}
-?></select>
+} ?></select></p>
 
 <p>View: <select name="searchview">
 <option value=""></option>
 <option value="shelf">Bookshelf</option>
 <option value="list">Detail List</option>
-</select></form>
+</select></p></form>
 
 <?php
 require_once("includes/footer.php");

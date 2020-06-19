@@ -15,11 +15,11 @@ $location = mysqli_real_escape_string($xrf_db, $_GET['location']);
 
 $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
 $searchwhat = mysqli_real_escape_string($xrf_db, $_POST['searchwhat']);
-$searchfilter = mysqli_real_escape_string($xrf_db, $_POST['searchfilter']);
+$searchtype = mysqli_real_escape_string($xrf_db, $_POST['searchtype']);
 $searchgroup = mysqli_real_escape_string($xrf_db, $_POST['searchgroup']);
 $searchview = mysqli_real_escape_string($xrf_db, $_POST['searchview']);
 $searchlocation = mysqli_real_escape_string($xrf_db, $_POST['searchlocation']);
-if ($searchfilter != "") $filter = $searchfilter;
+if ($searchtype != "") $filter = $searchtype;
 if ($searchgroup != "") $group = $searchgroup;
 if ($searchview != "") $view = $searchview;
 if ($searchlocation != "") $location = $searchlocation;
