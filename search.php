@@ -48,6 +48,21 @@ echo "
 <option value="J">J</option>
 <option value="PB">PB</option>
 </select>
+
+<br>Location: <select name="searchlocation">
+<option value=""></option><?php
+$locationsquery = "SELECT * FROM l_locations ORDER BY id ASC";
+$locationsresult = mysqli_query($xrf_db, $locationsquery);
+$locationsnum=mysqli_num_rows($locationsresult);
+$loc=0;
+while ($loc < $locationsnum) {
+	$loccode = xrf_mysql_result($locationsresult,$loc,"code");
+	$locdescr = xrf_mysql_result($locationsresult,$loc,"descr");
+	echo "<option value=\"$loccode\">$locdescr</option>";
+	$loc++;
+}
+?></select>
+
 <p>View: <select name="searchview">
 <option value=""></option>
 <option value="shelf">Bookshelf</option>

@@ -11,15 +11,18 @@ $limit = $_GET['limit'];
 $limit = (int)$limit;
 $view = $_GET['view'];
 $issn = $_GET['issn'];
+$location = mysqli_real_escape_string($xrf_db, $_GET['location']);
 
 $searchterm = mysqli_real_escape_string($xrf_db, $_POST['searchterm']);
 $searchwhat = mysqli_real_escape_string($xrf_db, $_POST['searchwhat']);
 $searchfilter = mysqli_real_escape_string($xrf_db, $_POST['searchfilter']);
 $searchgroup = mysqli_real_escape_string($xrf_db, $_POST['searchgroup']);
 $searchview = mysqli_real_escape_string($xrf_db, $_POST['searchview']);
+$searchlocation = mysqli_real_escape_string($xrf_db, $_POST['searchlocation']);
 if ($searchfilter != "") $filter = $searchfilter;
 if ($searchgroup != "") $group = $searchgroup;
 if ($searchview != "") $view = $searchview;
+if ($searchlocation != "") $location = $searchlocation;
 
 $default = " WHERE status != 'wdraw' AND status != 'rstrc'";
 if ($filter == "GG") { $cond1 = " AND tags LIKE '%game guide%'"; $xrf_page_subtitle = "Game Guides"; }
@@ -48,7 +51,6 @@ if ($filter == "chked") { $cond1 = " AND status = 'chked'"; $xrf_page_subtitle =
 if ($filter == "dmged") { $cond1 = " AND status = 'dmged'"; $xrf_page_subtitle = "Materials set to Damaged"; }
 if ($filter == "wdraw") { $cond1 = " AND status = 'wdraw'"; $xrf_page_subtitle = "Materials set to Withdrawn"; }
 if ($filter == "uncat") { $cond1 = " AND status = 'uncat'"; $xrf_page_subtitle = "Materials set to Uncategorized"; }
-if ($filter == "lgdrv") { $cond1 = " AND location = 'lgdrv'"; $xrf_page_subtitle = "Materials Stored Digitally"; }
 if ($filter == "GameCube") { $cond1 = " AND format LIKE '%GameCube%'"; $xrf_page_subtitle = "GameCube Games"; }
 if ($filter == "Wii") { $cond1 = " AND format LIKE '%Wii Disc%'"; $xrf_page_subtitle = "Wii Games"; }
 if ($filter == "WiiU") { $cond1 = " AND format LIKE '%Wii U Disc%'"; $xrf_page_subtitle = "Wii U Games"; }
@@ -119,6 +121,12 @@ if ($issn != "" && is_numeric($issn))
 	$xrf_page_subtitle = xrfl_getperiodical($xrf_db, $issn);
 }
 
+if ($location != "")
+{
+	$cond6 = " AND location = '$location'";
+	$xrf_page_subtitle = xrfl_getlocation($xrf_db, $location);
+}
+
 if ($sort == "" || $sort == "dewey")
 $sort1 = "dewey, title ASC";
 if ($sort == "loc")
@@ -128,7 +136,7 @@ $sort1 = "barcode DESC";
 
 if ($limit != "") { $limit1 = " LIMIT $limit"; }
 
-$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5 ORDER BY $sort1$limit1";
+$query = "SELECT * FROM l_books$default$cond1$cond2$cond3$cond4$cond5$cond6 ORDER BY $sort1$limit1";
 $result = mysqli_query($xrf_db, $query);
 $num=mysqli_num_rows($result);
 
