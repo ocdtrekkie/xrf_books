@@ -22,9 +22,11 @@ if ($do == "add")
 	$serial = mysqli_real_escape_string($xrf_db, $_POST['serial']);
 	$steam_id = mysqli_real_escape_string($xrf_db, $_POST['steam_id']);
 	
-	if ($typecode == "EB" || $typecode == "EPER") { $location = "lgdrv"; }
-	elseif ($typecode == "ESD" || $typecode == "EVG") { $location = "gmdrv"; }
-	else { $location = "oakwd"; }
+	$locationquery = "SELECT default_location FROM l_typecodes WHERE code = '$typecode'";
+	$locationresult = mysqli_query($xrf_db, $locationquery);
+	$locationnum=mysqli_num_rows($locationresult);
+	if ($locationnum > 0 ) { $location = xrf_mysql_result($locationresult,0,"default_location"); }
+	else { $location = ""; }
 	
 	if ($dewey == "") { $status = "uncat"; }
 	else { $status = "avail"; $dewey = str_replace("/","",trim($dewey)); }
