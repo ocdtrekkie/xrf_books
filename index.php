@@ -19,7 +19,7 @@ require_once("includes/header.php");
 <tr><td><a href="search_results.php?group=300">300s - Social Sciences</a></td><td><a href="search_results.php?group=800">800s - Literature</a></td></tr>
 <tr><td><a href="search_results.php?group=400">400s - Language</a></td><td><a href="search_results.php?group=900">900s - History, Geography</a></td></tr>
 <tr><td><a href="search_results.php?group=F">Fiction - Adult/Young Adult</a></td><td><a href="search_results.php?group=J">Fiction - Juvenile</a></td></tr>
-<tr><td><a href="search_results.php?group=E">Fiction - Early Reader</a></td><td></td></tr>
+<tr><td><a href="search_results.php?group=E">Fiction - Early Reader</a></td><td><a href="serials.php">Serials and Periodicals</a></td></tr>
 <tr><td><a href="search_results.php">View All Materials</a> (Please Use Sparingly)</td><td></td></tr>
 </table></div>
 <br>
@@ -61,31 +61,26 @@ require_once("includes/header.php");
 {
 echo "<a href=\"reading_list.php\">Your Reading List</a><br>
 <a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently Added</a><p>";
+}
+
+$typesquery = "SELECT * FROM l_typecodes ORDER BY id ASC";
+$typesresult = mysqli_query($xrf_db, $typesquery);
+$typesnum=mysqli_num_rows($typesresult);
+$typ=0;
+while ($typ < $typesnum) {
+	$typcode = xrf_mysql_result($typesresult,$typ,"code");
+	$typdescr = xrf_mysql_result($typesresult,$typ,"descr");
+	$typaccess = xrf_mysql_result($typesresult,$typ,"access_level");
+	if (($typaccess == "L" && xrf_has_uclass($xrf_myuclass,"L")) || (is_numeric($typaccess) && $typaccess <= $xrf_myulevel)) {
+		echo "<a href=\"search_results.php?filter=$typcode\">$typdescr</a><br>";
+	}
+	$typ++;
 } ?>
-
-<a href="search_results.php?filter=B">Books</a><br>
-<a href="serials.php">Serials and Periodicals</a><p>
-
-<?php if (xrf_has_uclass($xrf_myuclass,"L"))
-{
-echo "<a href=\"search_results.php?filter=EB\">Electronic Books</a><br>
-<a href=\"search_results.php?filter=EVG&view=shelf\">Electronic Games</a><br>
-<a href=\"search_results.php?filter=ESD\">Electronic Software</a><p>";
-} ?>
-
-<a href="search_results.php?filter=CDS">Computer - Software Discs</a><br>
-<a href="search_results.php?filter=CDG">Computer - Game Discs</a><br>
-<a href="search_results.php?filter=CDL">Computer - Library Discs</a></td>
+</td>
 
 <td width=400>
 <a href="search_results.php?filter=VG">Video Games</a> (<a href="search_results.php?filter=GameCube">GC</a>|<a href="search_results.php?filter=Wii">Wii</a>|<a href="search_results.php?filter=WiiU">WiiU</a>|<a href="search_results.php?filter=Switch">Switch</a>|<a href="search_results.php?filter=DS">DS</a>)<br>
-<a href="search_results.php?filter=video">Movies</a> (<a href="search_results.php?filter=4K">4K</a>|<a href="search_results.php?filter=3D">3D</a>|<a href="search_results.php?filter=BD">Blu-ray Discs</a>|<a href="search_results.php?filter=DVD">DVDs</a>)<br>
-<a href="search_results.php?filter=CDA">Audio CDs</a><p>
-
-<a href="search_results.php?filter=GG">Game Guides</a><br>
-<a href="search_results.php?filter=GD">Game Development Books</a><p>
-
-<a href="search_results.php?filter=manga&view=shelf">Manga</a>
+<a href="search_results.php?filter=video">Movies</a> (<a href="search_results.php?filter=4K">4K</a>|<a href="search_results.php?filter=3D">3D</a>)
 
 <?php if ($xrf_myulevel >= 3)
 {
