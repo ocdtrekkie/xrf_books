@@ -10,7 +10,7 @@ $sort = $_GET['sort'];
 $limit = $_GET['limit'];
 $limit = (int)$limit;
 $view = $_GET['view'];
-$issn = $_GET['issn'];
+$issn = mysqli_real_escape_string($xrf_db, $_GET['issn']);
 $location = mysqli_real_escape_string($xrf_db, $_GET['location']);
 $type = mysqli_real_escape_string($xrf_db, $_GET['type']);
 
@@ -96,7 +96,7 @@ $searchterm = str_replace("-","",trim($searchterm));
 $cond4 = " AND (isbn10 = '$searchterm' OR isbn13 = '$searchterm' OR issn = '$searchterm' OR lccn = '$searchterm')";
 }
 
-if ($issn != "" && is_numeric($issn))
+if ($issn != "")
 {
 	$cond5 = " AND issn = '$issn'";
 	$xrf_page_subtitle = xrfl_getperiodical($xrf_db, $issn);
