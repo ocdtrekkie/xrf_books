@@ -130,6 +130,7 @@ echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=ch
 	if ($typecode == "EVG" || $typecode == "ESD") {
 		echo "<a href=\"file:///$xrfl_library_local_repository&#50;/$barcode\">[Open Locally]</a>";
 	}
+	echo "<br><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
 }
 
 echo "</font></p>";
