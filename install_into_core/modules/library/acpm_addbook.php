@@ -2,6 +2,7 @@
 require("ismodule.php");
 require("modules/$modfolder/functions_lib.php");
 $do = $_GET['do'];
+$copyfrom = $_GET['copyfrom'];
 if ($do == "add")
 {
 	$title = $_POST['title'];
@@ -82,16 +83,34 @@ if ($do == "add")
 }
 else
 {
+	if (substr($copyfrom,0,4) == "4489") {
+		$sourcebookid = $copyfrom - 448900000000;
+		$sourcedataquery = "SELECT * FROM l_books WHERE barcode = $sourcebookid";
+		$sourcedataresult = mysqli_query($xrf_db, $sourcedataquery);
+		$sourcetitle = xrf_mysql_result($sourcedataresult,0,"title");
+		$sourceauthorid = xrf_mysql_result($sourcedataresult,0,"author");
+		$sourcetypecode = xrf_mysql_result($sourcedataresult,0,"typecode");
+		$sourcedewey = xrf_mysql_result($sourcedataresult,0,"dewey");
+		$sourceformat = xrf_mysql_result($sourcedataresult,0,"format");
+		$sourceyear = xrf_mysql_result($sourcedataresult,0,"year");
+		$sourceisbn10 = xrf_mysql_result($sourcedataresult,0,"isbn10");
+		$sourceisbn13 = xrf_mysql_result($sourcedataresult,0,"isbn13");
+		$sourceissn = xrf_mysql_result($sourcedataresult,0,"issn");
+		$sourcelccn = xrf_mysql_result($sourcedataresult,0,"lccn");
+		$sourcelccat = xrf_mysql_result($sourcedataresult,0,"lccat");
+		$sourcetags = xrf_mysql_result($sourcedataresult,0,"tags");
+	}
+	
 echo "<b>Add Library Media</b><p>";
 
 echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
-<table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\"></textarea></td></tr>
-<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\"> <input type=\"text\" name=\"author_name\" size=\"22\"> <input type=\"text\" name=\"author_years\" size=\"8\"></td></tr>
-<tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\"> <input type=\"text\" name=\"dewey\" size=\"36\"></td></tr>
-<tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\"> <input type=\"text\" name=\"copyright\" size=\"6\"></td></tr>
-<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\"> <input type=\"text\" name=\"isbn13\" size=\"16\"> <input type=\"text\" name=\"issn\" size=\"7\"></td></tr>
-<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\"> <input type=\"text\" name=\"lccat\" size=\"25\"></td></tr>
-<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\"></textarea></tr>
+<table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\">$sourcetitle</textarea></td></tr>
+<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\"> <input type=\"text\" name=\"author_years\" size=\"8\"></td></tr>
+<tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\" value=\"$sourcetypecode\"> <input type=\"text\" name=\"dewey\" size=\"36\" value=\"$sourcedewey\"></td></tr>
+<tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\" value=\"$sourceformat\"> <input type=\"text\" name=\"copyright\" size=\"6\" value=\"$sourceyear\"></td></tr>
+<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>
+<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\" value=\"$sourcelccn\"> <input type=\"text\" name=\"lccat\" size=\"25\" value=\"$sourcelccat\"></td></tr>
+<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\">$sourcetags</textarea></tr>
 <tr><td><b>Series:</b></td><td><input type=\"text\" name=\"series\" size=\"44\"></td></tr>
 <tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
 <tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
