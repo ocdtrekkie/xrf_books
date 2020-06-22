@@ -140,7 +140,6 @@ while ($qq < $num) {
 
 $barcode = xrf_mysql_result($result,$qq,"barcode");
 $barcode = $barcode + $xrfl_library_barcode;
-if ($num == 1) { xrf_go_redir("viewrecord.php?barcode=$barcode","Redirecting to only result...",0); }
 $typecode = xrf_mysql_result($result,$qq,"typecode");
 $dewey = xrf_mysql_result($result,$qq,"dewey");
 $author = xrf_mysql_result($result,$qq,"author");
@@ -166,20 +165,21 @@ if ($sort == "loc")
 $cata = $lccat;
 
 if (($typecode != "EB" && $typecode != "EPER" && $typecode != "ESD" && $typecode != "EVG") || xrf_has_uclass($xrf_myuclass,"L")) {
-if ($view == "shelf")
-{
-	if ($typecode != "") { $typecode = " (" . $typecode . ")"; }
-	if ($qq == 0 || $qq % 4 == 0) { echo "<tr>"; }
-	echo "<td height=\"250\" width=\"250\" align=\"center\"><a href=\"viewrecord.php?barcode=$barcode\">";
-	$filename = "covers/$barcode.png"; 
-	if (file_exists($filename)) { 
-	echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title$typecode\" title=\"$title$typecode\" border=1>"; 
-	} else echo "<div class=\"bookcover\"><p>$title$typecode</p><p>$aname</p></div>";
-	echo "</a></td>";
-	if ($qq % 4 == 3) { echo "</tr>"; }
-} else {
-echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$alink</td></tr>";
-}
+	if ($num == 1) {
+		xrf_go_redir("viewrecord.php?barcode=$barcode","Redirecting to only result...",0); }
+	elseif ($view == "shelf") {
+		if ($typecode != "") { $typecode = " (" . $typecode . ")"; }
+		if ($qq == 0 || $qq % 4 == 0) { echo "<tr>"; }
+		echo "<td height=\"250\" width=\"250\" align=\"center\"><a href=\"viewrecord.php?barcode=$barcode\">";
+		$filename = "covers/$barcode.png"; 
+		if (file_exists($filename)) { 
+		echo "<img src=\"$filename\" style=\"height:250px;max-width:250px;\" alt=\"$title$typecode\" title=\"$title$typecode\" border=1>"; 
+		} else echo "<div class=\"bookcover\"><p>$title$typecode</p><p>$aname</p></div>";
+		echo "</a></td>";
+		if ($qq % 4 == 3) { echo "</tr>"; }
+	} else {
+		echo "<tr><td>$typecode</td><td>$cata</td><td><a href=\"viewrecord.php?barcode=$barcode\">$title</a></td><td>$alink</td></tr>";
+	}
 }
 
 $qq++;
