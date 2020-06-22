@@ -111,7 +111,7 @@ else
 					{ $loctitle = $subfield; }
 					if ($subfield['code'] == "b")
 					{ $locsubtitle = $subfield; }
-					$sourcetitle = $loctitle . $locsubtitle;
+					$sourcetitle = trim($loctitle . $locsubtitle,' /');
 				}
 			}
 			if ($datafield['tag'] == "100") {
@@ -134,7 +134,7 @@ else
 				// lccn
 				foreach($datafield->subfield as $subfield) {
 					if ($subfield['code'] == "a")
-					{ $sourcelccn = $subfield; }
+					{ $sourcelccn = trim($subfield); }
 				}
 			}
 			if ($datafield['tag'] == "050") {
@@ -163,6 +163,8 @@ else
 		}
 		if ($sourcedewey != "" && $sourceauthorname != "") {
 			$sourcedewey = $sourcedewey . " " . strtoupper(substr($sourceauthorname,0,3));
+		} elseif ($sourcedewey != "" & $sourcetitle != "") {
+			$sourcedewey = $sourcedewey . " " . strtoupper(substr($sourcetitle,0,3));
 		}
 	}
 	
