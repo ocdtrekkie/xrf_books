@@ -88,3 +88,6 @@ CREATE TABLE IF NOT EXISTS `l_typecodes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Types of library materials';
+
+INSERT IGNORE INTO g_classes (code, desc) VALUES('L','eLibrary Access');
+INSERT IGNORE INTO g_modules (name, prefix, folder, ord, active) VALUES('Library','l','library',5,1);
