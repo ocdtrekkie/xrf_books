@@ -83,7 +83,8 @@ if ($do == "add")
 }
 else
 {
-	if (substr($copyfrom,0,4) == "4489") {
+	if ($copyfrom != "" && substr($copyfrom,0,4) == "4489") {
+		// clone from existing record
 		$sourcebookid = $copyfrom - 448900000000;
 		$sourcedataquery = "SELECT * FROM l_books WHERE barcode = $sourcebookid";
 		$sourcedataresult = mysqli_query($xrf_db, $sourcedataquery);
@@ -99,13 +100,77 @@ else
 		$sourcelccn = xrf_mysql_result($sourcedataresult,0,"lccn");
 		$sourcelccat = xrf_mysql_result($sourcedataresult,0,"lccat");
 		$sourcetags = xrf_mysql_result($sourcedataresult,0,"tags");
+	} elseif ($copyfrom != "") {
+		// import from library of congress
+		$marcxml = simplexml_load_file("https://lccn.loc.gov/$copyfrom/marcxml");
+		foreach($marcxml as $datafield) {
+			if ($datafield['tag'] == "245") {
+				// title
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "a")
+					{ $loctitle = $subfield; }
+					if ($subfield['code'] == "b")
+					{ $locsubtitle = $subfield; }
+					$sourcetitle = $loctitle . $locsubtitle;
+				}
+			}
+			if ($datafield['tag'] == "100") {
+				// primary author
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "a")
+					{ $sourceauthorname = $subfield; }
+					if ($subfield['code'] == "d")
+					{ $sourceauthoryears = $subfield; }
+				}
+			}
+			if ($datafield['tag'] == "264") {
+				// year
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "c")
+					{ $sourceyear = $subfield; }
+				}
+			}
+			if ($datafield['tag'] == "010") {
+				// lccn
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "a")
+					{ $sourcelccn = $subfield; }
+				}
+			}
+			if ($datafield['tag'] == "050") {
+				// lccat
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "a")
+					{ $lccat1 = $subfield; }
+					if ($subfield['code'] == "b")
+					{ $lccat2 = $subfield; }
+					$sourcelccat = $lccat1 . " " . $lccat2;
+				}
+			}
+			if ($datafield['tag'] == "082") {
+				// dewey
+				foreach($datafield->subfield as $subfield) {
+					if ($subfield['code'] == "a")
+					{ $sourcedewey = $subfield; }
+				}
+			}
+			if ($datafield['tag'] == "020") {
+				if (substr($datafield->subfield[0],0,3) == "978" && $sourceisbn13 == "")
+				{$sourceisbn13 = $datafield->subfield[0];}
+				elseif (substr($datafield->subfield[0],0,3) != "978" && $sourceisbn10 == "")
+				{$sourceisbn10 = $datafield->subfield[0];}
+			}
+		}
+		if ($sourcedewey != "" && $sourceauthorname != "") {
+			$sourcedewey = $sourcedewey . " " . strtoupper(substr($sourceauthorname,0,3));
+		}
 	}
 	
 echo "<b>Add Library Media</b><p>";
 
 echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
 <table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\">$sourcetitle</textarea></td></tr>
-<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\"> <input type=\"text\" name=\"author_years\" size=\"8\"></td></tr>
+<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\" value=\"$sourceauthorname\"> <input type=\"text\" name=\"author_years\" size=\"8\" value=\"$sourceauthoryears\"></td></tr>
 <tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\" value=\"$sourcetypecode\"> <input type=\"text\" name=\"dewey\" size=\"36\" value=\"$sourcedewey\"></td></tr>
 <tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\" value=\"$sourceformat\"> <input type=\"text\" name=\"copyright\" size=\"6\" value=\"$sourceyear\"></td></tr>
 <tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>
