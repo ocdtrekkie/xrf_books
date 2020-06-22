@@ -139,6 +139,8 @@ $qq=0;
 while ($qq < $num) {
 
 $barcode = xrf_mysql_result($result,$qq,"barcode");
+$barcode = $barcode + $xrfl_library_barcode;
+if ($num == 1) { xrf_go_redir("viewrecord.php?barcode=$barcode","Redirecting to only result...",0); }
 $typecode = xrf_mysql_result($result,$qq,"typecode");
 $dewey = xrf_mysql_result($result,$qq,"dewey");
 $author = xrf_mysql_result($result,$qq,"author");
@@ -147,7 +149,6 @@ $format = xrf_mysql_result($result,$qq,"format");
 $isbn10 = xrf_mysql_result($result,$qq,"isbn10");
 $isbn13 = xrf_mysql_result($result,$qq,"isbn13");
 $lccat = xrf_mysql_result($result,$qq,"lccat");
-$barcode = $barcode + $xrfl_library_barcode;
 if ($author <> "")
 {
 $aname = xrfl_getauthor($xrf_db, $author);
