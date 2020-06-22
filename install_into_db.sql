@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `l_authors` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='List of authors';
 
 CREATE TABLE IF NOT EXISTS `l_books` (
-  `barcode` int(12) NOT NULL AUTO_INCREMENT COMMENT '448900000000 + this',
+  `barcode` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Short barcode before adding common barcode',
   `typecode` varchar(4) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Material type',
   `dewey` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Dewey Decimal Number',
   `author` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Author ID',
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS `l_circ` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='List of materials currently checked out';
 
 CREATE TABLE IF NOT EXISTS `l_config` (
-  `library_home` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `library_barcode` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `library_local_repository` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `library_remote_mailto` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `library_home` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'URL of library home page',
+  `library_barcode` varchar(12) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Common barcode format, ex. 123400000000',
+  `library_local_repository` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'File location of digital materials',
+  `library_remote_mailto` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mail address to request remote check out'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `l_locations` (
