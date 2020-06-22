@@ -2,7 +2,6 @@
 require("ismodule.php");
 require("modules/$modfolder/functions_lib.php");
 $do = $_GET['do'];
-$copyfrom = $_GET['copyfrom'];
 if ($do == "add")
 {
 	$title = $_POST['title'];
@@ -83,6 +82,9 @@ if ($do == "add")
 }
 else
 {
+	$copyfrom = mysqli_real_escape_string($xrf_db, $_GET['copyfrom']);
+	$postcopyfrom = mysqli_real_escape_string($xrf_db, $_POST['copyfrom']);
+	if ($copyfrom == "" && $postcopyfrom != "") { $copyfrom = $postcopyfrom;}
 	if ($copyfrom != "" && substr($copyfrom,0,4) == "4489") {
 		// clone from existing record
 		$sourcebookid = $copyfrom - 448900000000;
@@ -168,19 +170,25 @@ else
 		}
 	}
 	
-echo "<b>Add Library Media</b><p>";
+	echo "<b>Add Library Media</b><p>";
 
-echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
-<table><tr><td><b>Title:</b></td><td><textarea name=\"title\" rows=\"3\" cols=\"34\">$sourcetitle</textarea></td></tr>
-<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\" value=\"$sourceauthorname\"> <input type=\"text\" name=\"author_years\" size=\"8\" value=\"$sourceauthoryears\"></td></tr>
-<tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\" value=\"$sourcetypecode\"> <input type=\"text\" name=\"dewey\" size=\"36\" value=\"$sourcedewey\"></td></tr>
-<tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\" value=\"$sourceformat\"> <input type=\"text\" name=\"copyright\" size=\"6\" value=\"$sourceyear\"></td></tr>
-<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>
-<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\" value=\"$sourcelccn\"> <input type=\"text\" name=\"lccat\" size=\"25\" value=\"$sourcelccat\"></td></tr>
-<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\">$sourcetags</textarea></tr>
-<tr><td><b>Series:</b></td><td><input type=\"text\" name=\"series\" size=\"44\"></td></tr>
-<tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
-<tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
-<tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
+	echo "<form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&do=add\" method=\"POST\">
+	<table><tr><td width=\"200\"><b>Title:</b></td><td width=\"400\"><textarea name=\"title\" rows=\"3\" cols=\"34\">$sourcetitle</textarea></td></tr>
+	<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\" value=\"$sourceauthorname\"> <input type=\"text\" name=\"author_years\" size=\"8\" value=\"$sourceauthoryears\"></td></tr>
+	<tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\" value=\"$sourcetypecode\"> <input type=\"text\" name=\"dewey\" size=\"36\" value=\"$sourcedewey\"></td></tr>
+	<tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\" value=\"$sourceformat\"> <input type=\"text\" name=\"copyright\" size=\"6\" value=\"$sourceyear\"></td></tr>
+	<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>
+	<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\" value=\"$sourcelccn\"> <input type=\"text\" name=\"lccat\" size=\"25\" value=\"$sourcelccat\"></td></tr>
+	<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\">$sourcetags</textarea></tr>
+	<tr><td><b>Series:</b></td><td><input type=\"text\" name=\"series\" size=\"44\"></td></tr>
+	<tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
+	<tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
+	<tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
+	
+	if ($copyfrom == "") {
+		echo "<p><form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook\" method=\"POST\">
+		<table><tr><td width=\"200\"><b>Import From:</b></td><td width=\"400\"><input type=\"text\" name=\"copyfrom\" size=\"44\"></td></tr>
+		<tr><td></td><td><input type=\"submit\" value=\"Import\"></td></tr></table></form>";
+	}
 }
 ?>
