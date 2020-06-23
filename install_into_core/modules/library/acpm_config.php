@@ -66,10 +66,14 @@ else
 	<p><b>Library Configuration</b></p>
 	<form action=\"acp_module_panel.php?modfolder=library&modpanel=config&do=change\" method=\"POST\">
 	<table>
-	<tr><td>Library URL:</td><td><input type=\"text\" name=\"library_home\" value=\"$xrfl_library_home\" size=\"30\"></td></tr>
-	<tr><td>Barcode:</td><td><input type=\"text\" name=\"library_barcode\" value=\"$xrfl_library_barcode\" size=\"30\"></td></tr>
-	<tr><td>Local Repository:</td><td><input type=\"text\" name=\"library_local_repository\" value=\"$xrfl_library_local_repository\" size=\"30\"></td></tr>
-	<tr><td>Remote Mailto:</td><td><input type=\"text\" name=\"library_remote_mailto\" value=\"$xrfl_library_remote_mailto\" size=\"30\"></td></tr>
+	<tr><td>Library URL:</td><td><input type=\"text\" name=\"library_home\" value=\"$xrfl_library_home\" size=\"30\"><br>
+	<font size=\"2\">This is the location of the library<br>index, as users will browse to it.<br><i>https://catalog.example.com</i><p></font></td></tr>
+	<tr><td>Base Barcode:</td><td><input type=\"text\" name=\"library_barcode\" value=\"$xrfl_library_barcode\" size=\"30\"><br>
+	<font size=\"2\">This is the base number for the<br>library barcode. It should be a<br>12-digit number with trailing zeroes.<br><i>ex. 123400000000</i><p></font></td></tr>
+	<tr><td>Local Repository:</td><td><input type=\"text\" name=\"library_local_repository\" value=\"$xrfl_library_local_repository\" size=\"30\"><br>
+	<font size=\"2\">If any electronic media is browsable<br>from a file share or drive letter,<br>place the common part of the<br>directory address here.<br><i>ex. E:/Books</i><p></font></td></tr>
+	<tr><td>Remote Mailto:</td><td><input type=\"text\" name=\"library_remote_mailto\" value=\"$xrfl_library_remote_mailto\" size=\"30\"><br>
+	<font size=\"2\">If any electronic media can be<br>remotely requested by email,<br>place a mailto: string here.<br><i>ex. mailto:checkout@example.com<br>?subject=check&#37;20out&#37;20</i><p></font></td></tr>
 	</table>
 	<input type=\"submit\" value=\"Submit!\">
 	</form>";
