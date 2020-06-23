@@ -6,7 +6,7 @@ require_once("includes/include_lconfig.php");
 
 $barcode = $_GET['barcode'];
 
-$smallcode = $barcode - 448900000000;
+$smallcode = $barcode - $xrfl_library_barcode;
 $smallcode = (int)$smallcode;
 
 $query = "SELECT * FROM l_books WHERE barcode = '$smallcode'";

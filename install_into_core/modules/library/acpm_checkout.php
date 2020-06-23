@@ -1,5 +1,6 @@
 <?php
 require("ismodule.php");
+require("modules/$modfolder/include_lconfig.php");
 $do = $_GET['do'];
 $passid = $_GET['passid'];
 if ($do == "check")
@@ -7,7 +8,7 @@ if ($do == "check")
 	$patron = mysqli_real_escape_string($xrf_db, $_POST['patron']);
 	$barcode = mysqli_real_escape_string($xrf_db, $_POST['barcode']);
 	$duedate = mysqli_real_escape_string($xrf_db, $_POST['duedate']);
-	$bookid = $barcode - 448900000000;
+	$bookid = $barcode - $xrfl_library_barcode;
 
 	$query="SELECT * FROM g_users WHERE email='$patron' || id='$patron'";
 	$result=mysqli_query($xrf_db, $query);
@@ -28,9 +29,9 @@ if ($do == "check")
 else
 {
 	if ($passid != 0)
-		$barcode=448900000000 + (int)$passid;
+		$barcode=$xrfl_library_barcode + (int)$passid;
 	else
-		$barcode="44890000";
+		$barcode=substr($xrfl_library_barcode,0,8);
 
 	echo "<b>Check Out Material</b><p>";
 

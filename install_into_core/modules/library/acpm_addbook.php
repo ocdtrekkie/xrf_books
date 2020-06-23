@@ -1,6 +1,7 @@
 <?php
 require("ismodule.php");
 require("modules/$modfolder/functions_lib.php");
+require("modules/$modfolder/include_lconfig.php");
 $do = $_GET['do'];
 if ($do == "add")
 {
@@ -51,7 +52,8 @@ if ($do == "add")
 	mysqli_stmt_bind_param($addbook,"ssssssssssssss", $typecode, $dewey, $author_id, $title, $format, $copyright, $isbn10, $isbn13, $issn, $lccn, $lccat, $status, $location, $tags);
 	mysqli_stmt_execute($addbook) or die(mysqli_error($xrf_db));
 	$book_id = mysqli_insert_id($xrf_db);
-	echo "Book added with barcode 44890000<b>" . $book_id . "</b>.";
+	$barcode = $book_id + $xrfl_library_barcode;
+	echo "Book added with barcode <b>" . $barcode . "</b>.";
 	
 	if ($issn != "" && $series != "" && xrfl_getperiodical($xrf_db, $issn) == "") {
 		if ($typecode == "EPER") {
@@ -85,9 +87,9 @@ else
 	$copyfrom = mysqli_real_escape_string($xrf_db, $_GET['copyfrom']);
 	$postcopyfrom = mysqli_real_escape_string($xrf_db, $_POST['copyfrom']);
 	if ($copyfrom == "" && $postcopyfrom != "") { $copyfrom = $postcopyfrom;}
-	if ($copyfrom != "" && substr($copyfrom,0,4) == "4489") {
+	if ($copyfrom != "" && substr($copyfrom,0,4) == substr($xrfl_library_barcode,0,4)) {
 		// clone from existing record
-		$sourcebookid = $copyfrom - 448900000000;
+		$sourcebookid = $copyfrom - $xrfl_library_barcode;
 		$sourcedataquery = "SELECT * FROM l_books WHERE barcode = $sourcebookid";
 		$sourcedataresult = mysqli_query($xrf_db, $sourcedataquery);
 		$sourcetitle = xrf_mysql_result($sourcedataresult,0,"title");

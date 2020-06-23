@@ -1,13 +1,15 @@
 <?php
 require("ismodule.php");
+require("modules/$modfolder/include_lconfig.php");
 $do = $_GET['do'];
+$passid = $_GET['passid'];
 if ($do == "check")
 {
 	$barcode = mysqli_real_escape_string($xrf_db, $_POST['barcode']);
 	$waive = mysqli_real_escape_string($xrf_db, $_POST['waive']);
 	if ($waive == 'N')
 		$waive = "";
-	$bookid = $barcode - 448900000000;
+	$bookid = $barcode - $xrfl_library_barcode;
 	
 	$query="SELECT * FROM l_circ WHERE bookid='$bookid' AND returned = 0";
 	$result=mysqli_query($xrf_db, $query);
@@ -55,9 +57,9 @@ if ($do == "check")
 else
 {
 	if ($passid != 0)
-		$barcode=448900000000 + (int)$passid;
+		$barcode=$xrfl_library_barcode + (int)$passid;
 	else
-		$barcode="44890000";
+		$barcode=substr($xrfl_library_barcode,0,8);
 
 	echo "<b>Return Material</b><p>";
 
