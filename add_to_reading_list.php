@@ -1,5 +1,6 @@
 <?php
 require_once("includes/global.php");
+require_once("includes/include_lconfig.php");
 require_once("includes/header.php");
 
 $bookid = (int)$_GET['passid'];

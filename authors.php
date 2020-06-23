@@ -1,5 +1,6 @@
 <?php
 require_once("includes/global.php");
+require_once("includes/include_lconfig.php");
 require_once("includes/functions_lib.php");
 
 $letter = substr($_GET['letter'],0,1);

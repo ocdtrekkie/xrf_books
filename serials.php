@@ -1,6 +1,7 @@
 <?php
 require_once("includes/global.php");
 require_once("includes/functions_lib.php");
+require_once("includes/include_lconfig.php");
 
 $xrf_page_subtitle = "Serials and Periodicals";
 

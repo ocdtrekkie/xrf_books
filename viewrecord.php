@@ -2,6 +2,7 @@
 require_once("includes/global.php");
 require_once("includes/functions_class.php");
 require_once("includes/functions_lib.php");
+require_once("includes/include_lconfig.php");
 
 $barcode = $_GET['barcode'];
 
