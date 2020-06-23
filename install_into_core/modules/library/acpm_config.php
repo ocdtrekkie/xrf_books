@@ -1,0 +1,77 @@
+<?php
+require("ismodule.php");
+require("modules/$modfolder/include_lconfig.php");
+
+$do = $_GET['do'];
+if ($do == "change")
+{
+	$new_library_home = mysqli_real_escape_string($xrf_db, $_POST['library_home']);
+	$new_library_barcode = mysqli_real_escape_string($xrf_db, $_POST['library_barcode']);
+	$new_library_local_repository = mysqli_real_escape_string($xrf_db, $_POST['library_local_repository']);
+	$new_library_remote_mailto = mysqli_real_escape_string($xrf_db, $_POST['library_remote_mailto']);
+	
+	if ($new_library_home != $xrfl_library_home)
+	{
+		$query = "UPDATE l_config SET library_home = '$new_library_home'";
+		mysqli_query($xrf_db, $query);
+		$xrfl_library_home = $new_library_home;
+		if ($xrf_vlog_enabled == 1)
+		{
+			$query="INSERT INTO g_log (uid, date, event) VALUES ('$xrf_myid',NOW(),'Changed library URL to $new_library_home.')";
+			mysqli_query($xrf_db, $query);
+		}
+	}
+	
+	if ($new_library_barcode != $xrfl_library_barcode)
+	{
+		$query = "UPDATE l_config SET library_barcode = '$new_library_barcode'";
+		mysqli_query($xrf_db, $query);
+		$xrfl_library_barcode = $new_library_barcode;
+		if ($xrf_vlog_enabled == 1)
+		{
+			$query="INSERT INTO g_log (uid, date, event) VALUES ('$xrf_myid',NOW(),'Changed library barcode to $new_library_barcode.')";
+			mysqli_query($xrf_db, $query);
+		}
+	}
+	
+	if ($new_library_local_repository != $xrfl_library_local_repository)
+	{
+		$query = "UPDATE l_config SET library_local_repository = '$new_library_local_repository'";
+		mysqli_query($xrf_db, $query);
+		$xrfl_library_local_repository = $new_library_local_repository;
+		if ($xrf_vlog_enabled == 1)
+		{
+			$query="INSERT INTO g_log (uid, date, event) VALUES ('$xrf_myid',NOW(),'Changed library local repository to $new_library_local_repository.')";
+			mysqli_query($xrf_db, $query);
+		}
+	}
+	
+	if ($new_library_remote_mailto != $xrfl_library_remote_mailto)
+	{
+		$query = "UPDATE l_config SET library_remote_mailto = '$new_library_remote_mailto'";
+		mysqli_query($xrf_db, $query);
+		$xrfl_library_remote_mailto = $new_library_remote_mailto;
+		if ($xrf_vlog_enabled == 1)
+		{
+			$query="INSERT INTO g_log (uid, date, event) VALUES ('$xrf_myid',NOW(),'Changed library remote mailto address to $new_library_remote_mailto.')";
+			mysqli_query($xrf_db, $query);
+		}
+	}
+	
+	xrf_go_redir("acp.php","Settings changed.",2); 
+}
+else
+{
+	echo "
+	<p><b>Library Configuration</b></p>
+	<form action=\"acp_module_panel.php?modfolder=library&modpanel=config&do=change\" method=\"POST\">
+	<table>
+	<tr><td>Library URL:</td><td><input type=\"text\" name=\"library_home\" value=\"$xrfl_library_home\" size=\"30\"></td></tr>
+	<tr><td>Barcode:</td><td><input type=\"text\" name=\"library_barcode\" value=\"$xrfl_library_barcode\" size=\"30\"></td></tr>
+	<tr><td>Local Repository:</td><td><input type=\"text\" name=\"library_local_repository\" value=\"$xrfl_library_local_repository\" size=\"30\"></td></tr>
+	<tr><td>Remote Mailto:</td><td><input type=\"text\" name=\"library_remote_mailto\" value=\"$xrfl_library_remote_mailto\" size=\"30\"></td></tr>
+	</table>
+	<input type=\"submit\" value=\"Submit!\">
+	</form>";
+}
+?>
