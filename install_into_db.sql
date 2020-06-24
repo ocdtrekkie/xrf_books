@@ -79,6 +79,15 @@ CREATE TABLE IF NOT EXISTS `l_statuses` (
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Statuses for library materials';
 
+INSERT IGNORE INTO `l_statuses` (`id`, `code`, `descr`) VALUES
+(1, 'avail', 'Available'),
+(2, 'chked', 'Checked Out'),
+(3, 'dmged', 'Damaged'),
+(4, 'trace', 'On Trace'),
+(5, 'uncat', 'Uncatalogued'),
+(6, 'wdraw', 'Withdrawn'),
+(7, 'rstrc', 'Restricted Access');
+
 CREATE TABLE IF NOT EXISTS `l_typecodes` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
