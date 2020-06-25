@@ -74,12 +74,12 @@ if ($isbn13 != "")
 echo "ISBN-13: $isbn13<br>";
 if ($issn != "")
 echo "ISSN: <a href=\"search_results.php?issn=$issn\">$issnhyp</a><br>";
-if ($lccn != "")
+if ($lccn != "" && $xrfl_locgov_enable == 1)
 echo "LCCN: <a href=\"https://lccn.loc.gov/$lccn\" target=\"_blank\">$lccn</a><br>";
-if ($lccat != "")
+if ($lccat != "" && $xrfl_locgov_enable == 1)
 echo "LC Cat: $lccat<br>";
 
-if ($typecode == "CDG" || $typecode == "EVG"){
+if ($typecode == "CDG" || $typecode == "EVG" && $xrfl_steam_enable == 1){
 $query = "SELECT * FROM l_externals WHERE barcode = '$smallcode'";
 $result = mysqli_query($xrf_db, $query);
 if(mysqli_num_rows($result) != 0){
