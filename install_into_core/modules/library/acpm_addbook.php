@@ -73,7 +73,7 @@ if ($do == "add")
 		echo "<br>Serial added to database.";
 	}
 	
-	if ($steam_id != "") {
+	if ($steam_id != "" && $xrfl_steam_enable == 1) {
 		$addsteamid = mysqli_prepare($xrf_db, "INSERT INTO l_externals (barcode, steam_id) VALUES(?,?)") or die(mysqli_error($xrf_db));
 		mysqli_stmt_bind_param($addsteamid,"ii", $book_id, $steam_id);
 		mysqli_stmt_execute($addsteamid) or die(mysqli_error($xrf_db));
@@ -104,7 +104,7 @@ else
 		$sourcelccn = xrf_mysql_result($sourcedataresult,0,"lccn");
 		$sourcelccat = xrf_mysql_result($sourcedataresult,0,"lccat");
 		$sourcetags = xrf_mysql_result($sourcedataresult,0,"tags");
-	} elseif ($copyfrom != "") {
+	} elseif ($copyfrom != "" && $xrfl_locgov_enable == 1) {
 		// import from library of congress
 		$marcxml = simplexml_load_file("https://lccn.loc.gov/$copyfrom/marcxml");
 		foreach($marcxml as $datafield) {
@@ -179,13 +179,19 @@ else
 	<tr><td><b>Author:</b></td><td><input type=\"text\" name=\"author_id\" size=\"3\" value=\"$sourceauthorid\"> <input type=\"text\" name=\"author_name\" size=\"22\" value=\"$sourceauthorname\"> <input type=\"text\" name=\"author_years\" size=\"8\" value=\"$sourceauthoryears\"></td></tr>
 	<tr><td><b>Type/Dewey:</b></td><td><input type=\"text\" name=\"typecode\" size=\"3\" value=\"$sourcetypecode\"> <input type=\"text\" name=\"dewey\" size=\"36\" value=\"$sourcedewey\"></td></tr>
 	<tr><td><b>Format/Year:</b></td><td><input type=\"text\" name=\"format\" size=\"33\" value=\"$sourceformat\"> <input type=\"text\" name=\"copyright\" size=\"6\" value=\"$sourceyear\"></td></tr>
-	<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>
-	<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\" value=\"$sourcelccn\"> <input type=\"text\" name=\"lccat\" size=\"25\" value=\"$sourcelccat\"></td></tr>
-	<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\">$sourcetags</textarea></tr>
+	<tr><td><b>ISBN10/13/ISSN:</b></td><td><input type=\"text\" name=\"isbn10\" size=\"10\" value=\"$sourceisbn10\"> <input type=\"text\" name=\"isbn13\" size=\"16\" value=\"$sourceisbn13\"> <input type=\"text\" name=\"issn\" size=\"7\" value=\"$sourceissn\"></td></tr>";
+
+	if ($xrfl_locgov_enable == 1)
+		echo "<tr><td><b>LCCN/Cat:</b></td><td><input type=\"text\" name=\"lccn\" size=\"14\" value=\"$sourcelccn\"> <input type=\"text\" name=\"lccat\" size=\"25\" value=\"$sourcelccat\"></td></tr>";
+	
+	echo "<tr><td><b>Tags:</b></td><td><textarea name=\"tags\" rows=\"3\" cols=\"34\">$sourcetags</textarea></tr>
 	<tr><td><b>Series:</b></td><td><input type=\"text\" name=\"series\" size=\"44\"></td></tr>
-	<tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>
-	<tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>
-	<tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
+	<tr><td><b>Serial #:</b></td><td><input type=\"text\" name=\"serial\" size=\"44\"></td></tr>";
+	
+	if ($xrfl_steam_enable == 1)
+		echo "<tr><td><b>Steam ID:</b></td><td><input type=\"text\" name=\"steam_id\" size=\"10\"></td></tr>";
+	
+	echo "<tr><td></td><td><input type=\"submit\" value=\"Add\"></td></tr></table></form>";
 	
 	if ($copyfrom == "") {
 		echo "<p><form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook\" method=\"POST\">
