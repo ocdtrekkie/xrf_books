@@ -84,7 +84,7 @@ $query = "SELECT * FROM l_externals WHERE barcode = '$smallcode'";
 $result = mysqli_query($xrf_db, $query);
 if(mysqli_num_rows($result) != 0){
   $steam_id = xrf_mysql_result($result,0,"steam_id");
-  echo "Steam: <a href=\"https://store.steampowered.com/app/$steam_id\">$steam_id</a><br>";
+  echo "Steam: <a href=\"https://store.steampowered.com/app/$steam_id\" target=\"_blank\">$steam_id</a> <font size=\"2\"><a href=\"https://steamdb.info/app/$steam_id\" target=\"_blank\">DB</a></font><br>";
 }
 }
 
