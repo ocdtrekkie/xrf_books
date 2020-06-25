@@ -38,7 +38,10 @@ CREATE TABLE IF NOT EXISTS `l_config` (
   `library_home` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'URL of library home page',
   `library_barcode` varchar(12) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Common barcode format, ex. 123400000000',
   `library_local_repository` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'File location of digital materials',
-  `library_remote_mailto` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mail address to request remote check out'
+  `library_remote_mailto` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Mail address to request remote check out',
+  `locgov_enable` int(1) NOT NULL DEFAULT '0' COMMENT '1 to enable Library of Congress cataloging',
+  `steam_enable` int(1) NOT NULL DEFAULT '0' COMMENT '1 to enable Steam ID integration',
+  PRIMARY KEY(`library_barcode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `l_locations` (
