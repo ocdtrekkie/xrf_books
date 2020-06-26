@@ -115,7 +115,7 @@ else
 					{ $loctitle = $subfield; }
 					if ($subfield['code'] == "b")
 					{ $locsubtitle = $subfield; }
-					$sourcetitle = str_replace(" :",": ",trim($loctitle . $locsubtitle,' /'));
+					$sourcetitle = ucwords(str_replace(" :",": ",trim($loctitle . $locsubtitle,' /')));
 				}
 			}
 			if ($datafield['tag'] == "100") {
