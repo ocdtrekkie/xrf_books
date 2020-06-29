@@ -127,7 +127,7 @@ else
 					{ $sourceauthoryears = $subfield; }
 				}
 			}
-			if ($datafield['tag'] == "264") {
+			if ($datafield['tag'] == "260" || $datafield['tag'] == "264") {
 				// year
 				foreach($datafield->subfield as $subfield) {
 					if ($subfield['code'] == "c")
