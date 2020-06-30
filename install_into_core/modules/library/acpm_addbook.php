@@ -131,7 +131,7 @@ else
 				// year
 				foreach($datafield->subfield as $subfield) {
 					if ($subfield['code'] == "c")
-					{ $sourceyear = $subfield; }
+					{ $sourceyear = filter_var($subfield,FILTER_SANITIZE_NUMBER_INT); }
 				}
 			}
 			if ($datafield['tag'] == "010") {
