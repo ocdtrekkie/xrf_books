@@ -20,7 +20,7 @@ if ($do == "upload")
 
 	// ALLOWED FILE EXTENSIONS
 	if ($error == "") {
-	  $allowed = ["jpg", "jpeg", "png", "gif"];
+	  $allowed = ["png"]; // All covers should be PNGs
 	  $ext = strtolower(pathinfo($_FILES["file-upload"]["name"], PATHINFO_EXTENSION));
 	  if (!in_array($ext, $allowed)) {
 		$error = "$ext file type not allowed - " . $_FILES["file-upload"]["name"];
@@ -37,7 +37,7 @@ if ($do == "upload")
 	// FILE SIZE CHECK
 	if ($error == "") {
 	  // 1,000,000 = 1MB
-	  if ($_FILES["file-upload"]["size"] > 50000000) {
+	  if ($_FILES["file-upload"]["size"] > 250000) { // 244 KB should be enough
 		$error = $_FILES["file-upload"]["name"] . " - file size too big!";
 	  }
 	}
