@@ -72,7 +72,7 @@ else
         background:#aaa;
       }
     </style>
-    <script src=\"modules/$modfolder/acpm_uploadcovers.js\"></script>
+    <script src=\"acp_module_api.php?modfolder=$modfolder&modpanel=uploadcovers.js\"></script>
 	
 	<!-- DROP ZONE -->
     <div id=\"uploader\">

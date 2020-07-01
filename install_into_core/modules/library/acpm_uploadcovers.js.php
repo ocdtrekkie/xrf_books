@@ -1,6 +1,12 @@
+<?php
 /* Credit to W. S. Toh https://code-boxx.com/simple-drag-and-drop-file-upload/ */
 /* MIT License */
 
+Header("content-type: application/x-javascript");
+require("ismodule.php");
+require("modules/$modfolder/functions_lib.php");
+require("modules/$modfolder/include_lconfig.php");
+echo "
 /* !! UPDATE : AJAX IS ASYNCHRONOUS !! */
 /* We do not want users to dump 100 files & upload all at the same time */
 /* This will create sort of a queue system & upload one at a time */
@@ -28,13 +34,13 @@ var upcontrol = {
     data.append('file-upload', upcontrol.queue[upcontrol.now]);
 
     // @TODO - ADD MORE POST DATA IF YOU WANT
-    // data.append("foo", "bar");
+    // data.append(\"foo\", \"bar\");
     
-    xhr.open('POST', 'acp_module_api.php?modfolder=library&modpanel=uploadcovers&do=upload', true);
+    xhr.open('POST', 'acp_module_api.php?modfolder=$modfolder&modpanel=uploadcovers&do=upload', true);
     xhr.onload = function (e) {
       // SHOW UPLOAD STATUS
       var fstat = document.createElement('div'),
-          txt = upcontrol.queue[upcontrol.now].name + " - ";
+          txt = upcontrol.queue[upcontrol.now].name + \" - \";
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           // SERVER RESPONSE
@@ -59,26 +65,26 @@ var upcontrol = {
         document.getElementById('uploader').classList.remove('disabled');
 
         // @TODO - ADD MESSAGE HERE IF YOU WANT
-        console.log("Upload complete");
+        console.log(\"Upload complete\");
       }
     };
     xhr.send(data);
   }
 };
 
-window.addEventListener("load", function () {
+window.addEventListener(\"load\", function () {
   // IF DRAG-DROP UPLOAD SUPPORTED
   if (window.File && window.FileReader && window.FileList && window.Blob) {
     /* [THE ELEMENTS] */
     var uploader = document.getElementById('uploader');
 
     /* [VISUAL - HIGHLIGHT DROP ZONE ON HOVER] */
-    uploader.addEventListener("dragenter", function (e) {
+    uploader.addEventListener(\"dragenter\", function (e) {
       e.preventDefault();
       e.stopPropagation();
       uploader.classList.add('highlight');
     });
-    uploader.addEventListener("dragleave", function (e) {
+    uploader.addEventListener(\"dragleave\", function (e) {
       e.preventDefault();
       e.stopPropagation();
       uploader.classList.remove('highlight');
@@ -86,13 +92,13 @@ window.addEventListener("load", function () {
 
     /* [UPLOAD MECHANICS] */
     // STOP THE DEFAULT BROWSER ACTION FROM OPENING THE FILE
-    uploader.addEventListener("dragover", function (e) {
+    uploader.addEventListener(\"dragover\", function (e) {
       e.preventDefault();
       e.stopPropagation();
     });
 
     // ADD OUR OWN UPLOAD ACTION
-    uploader.addEventListener("drop", function (e) {
+    uploader.addEventListener(\"drop\", function (e) {
       e.preventDefault();
       e.stopPropagation();
       uploader.classList.remove('highlight');
@@ -101,6 +107,6 @@ window.addEventListener("load", function () {
   }
   // FALLBACK - HIDE DROP ZONE IF DRAG-DROP UPLOAD NOT SUPPORTED
   else {
-    document.getElementById('uploader').style.display = "none";
+    document.getElementById('uploader').style.display = \"none\";
   }
-});
+});" ?>
