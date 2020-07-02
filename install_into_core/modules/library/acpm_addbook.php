@@ -80,7 +80,7 @@ if ($do == "add")
 		echo "<br>Steam ID added to database.";
 	}
 	
-	echo "<p><a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook\">Add another book?</a></p>";
+	echo "<p><a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook\">[Add Another Book]</a> <a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=addbook&copyfrom=$barcode\">[Clone This Book]</a> <a href=\"acp_module_panel.php?modfolder=$modfolder&modpanel=uploadcovers\">[Upload Covers]</a></p>";
 }
 else
 {
