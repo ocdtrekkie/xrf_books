@@ -62,11 +62,11 @@ else
       #uploader {
         width: 300px; 
         height: 200px; 
-        background: #0f0f0f;
+        background: #222222;
         padding: 10px;
       }
       #uploader.highlight {
-        background:#ff0;
+        background:#555555;
       }
       #uploader.disabled {
         background:#aaa;
@@ -76,7 +76,9 @@ else
 	
 	<!-- DROP ZONE -->
     <div id=\"uploader\">
-      Drop Files Here
+      <p>Drop Files Here</p>
+	  <p>Maximum Size: 244 KB</p>
+	  <p>Maximum Dimensions:<br>300px by 300px</p>
     </div>
 
     <!-- STATUS -->
