@@ -74,6 +74,8 @@ else
     </style>
     <script src=\"acp_module_api.php?modfolder=$modfolder&modpanel=uploadcovers.js\"></script>
 	
+	<b>Upload Covers</b><p>
+	
 	<!-- DROP ZONE -->
     <div id=\"uploader\">
       <p>Drop Files Here</p>
