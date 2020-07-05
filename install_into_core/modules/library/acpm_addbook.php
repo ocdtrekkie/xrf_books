@@ -122,9 +122,12 @@ else
 				// primary author
 				foreach($datafield->subfield as $subfield) {
 					if ($subfield['code'] == "a")
-					{ $sourceauthorname = $subfield; }
+					{ $sourceauthormainname = $subfield; }
+					if ($subfield['code'] == "q")
+					{ $sourceauthormorename = $subfield; }
 					if ($subfield['code'] == "d")
 					{ $sourceauthoryears = $subfield; }
+					$sourceauthorname = $sourceauthormainname . " " . $sourceauthormorename;
 				}
 			}
 			if ($datafield['tag'] == "260" || $datafield['tag'] == "264") {
