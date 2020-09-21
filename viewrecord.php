@@ -105,7 +105,12 @@ if ($xrf_myulevel > 2) {
 echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"add_to_reading_list.php?passid=$smallcode\">[Add to Reading List]</a> ";
 
 if ($xrf_myulevel > 3) {
-echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
+	if (file_exists("acp_module_panel.php")) {
+		echo "<a href=\"acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
+		$localpanel=1;
+	} else {
+		echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=checkout&passid=$smallcode\">[Check Out]</a> ";
+	}
 
 	if ($typecode == "EB" || $typecode == "EPER") {
 		echo "<a href=\"$xrfl_library_remote_mailto$barcode\">[Remote Check Out]</a> ";
@@ -131,7 +136,12 @@ echo "<a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=ch
 	if ($typecode == "EVG" || $typecode == "ESD") {
 		echo "<a href=\"file:///$xrfl_library_local_repository&#50;/$barcode\">[Open Locally]</a>";
 	}
-	echo "<br><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
+	
+	if ($localpanel==1) {
+		echo "<br><a href=\"acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
+	} else {
+		echo "<br><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
+	}
 }
 
 echo "</font></p>";
