@@ -8,9 +8,14 @@ require("modules/$modfolder/include_lconfig.php");
 $do = $_GET['do'];
 if ($do == "upload")
 {
+	if ($xrf_server_name == "SandstormServer")
+		$coverfolder = "/var/covers/";
+	else
+		$coverfolder = "../books/covers/";
+	
 	// SOURCE + DESTINATION
 	$source = $_FILES["file-upload"]["tmp_name"];
-	$destination = "../books/covers/" . $_FILES["file-upload"]["name"];
+	$destination = $coverfolder . $_FILES["file-upload"]["name"];
 	$error = "";
 
 	// CHECK IF FILE ALREADY EXIST
