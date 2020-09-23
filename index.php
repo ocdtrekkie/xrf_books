@@ -6,7 +6,12 @@ require_once("includes/include_lconfig.php");
 require_once("includes/header.php");
 
 if ($xrfl_barcode="" && $myulevel > 3) {
-xrf_goredir("acp_module_panel.php?modfolder=$modfolder&modpanel=config", "Library is not set up yet!", 2); }
+	if (file_exists("acp_module_panel.php")) {
+		xrf_goredir("acp_module_panel.php?modfolder=$modfolder&modpanel=config", "Library is not set up yet!", 2);
+	} else {
+		xrf_goredir("$xrf_site_url/acp_module_panel.php?modfolder=$modfolder&modpanel=config", "Library is not set up yet!", 2);
+	}
+}
 ?>
 
 <form action="search_results.php" method="POST"><p align="center"><b>Search:</b> 
