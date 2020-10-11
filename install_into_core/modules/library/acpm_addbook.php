@@ -87,6 +87,7 @@ else
 	$copyfrom = mysqli_real_escape_string($xrf_db, $_GET['copyfrom']);
 	$postcopyfrom = mysqli_real_escape_string($xrf_db, $_POST['copyfrom']);
 	if ($copyfrom == "" && $postcopyfrom != "") { $copyfrom = $postcopyfrom;}
+	$copyfrom = trim($copyfrom);
 	if ($copyfrom != "" && substr($copyfrom,0,4) == substr($xrfl_library_barcode,0,4)) {
 		// clone from existing record
 		$sourcebookid = $copyfrom - $xrfl_library_barcode;
