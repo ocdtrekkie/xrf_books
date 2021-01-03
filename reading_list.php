@@ -4,7 +4,7 @@ require_once("includes/functions_lib.php");
 require_once("includes/include_lconfig.php");
 require_once("includes/header.php");
 
-if ($xrf_myulevel > 2) {
+if ($xrf_myulevel > 1) {
 	$getlist = mysqli_query($xrf_db, "SELECT * FROM l_readlist WHERE uid=$xrf_myid");
 	$num=mysqli_num_rows($getlist);
 

@@ -6,7 +6,7 @@ require_once("includes/header.php");
 $bookid = (int)$_GET['passid'];
 $barcode = $bookid + $xrfl_library_barcode;
 
-if ($xrf_myulevel > 2) {
+if ($xrf_myulevel > 1) {
 	$addtolist = mysqli_prepare($xrf_db, "INSERT INTO l_readlist (uid, bookid, date) VALUES(?, ?, NOW())");
 	mysqli_stmt_bind_param($addtolist,"ii", $xrf_myid, $bookid);
 	mysqli_stmt_execute($addtolist) or die(mysqli_error($xrf_db));

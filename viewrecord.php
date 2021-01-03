@@ -100,7 +100,7 @@ if(mysqli_num_rows($result) != 0){
 }
 }
 
-if ($xrf_myulevel > 2) {
+if ($xrf_myulevel > 1) {
 
 echo "<p align=\"left\"><b>Actions:</b> <font size=\"2\"><a href=\"add_to_reading_list.php?passid=$smallcode\">[Add to Reading List]</a> ";
 

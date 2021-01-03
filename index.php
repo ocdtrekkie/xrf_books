@@ -66,7 +66,7 @@ if ($xrfl_barcode="" && $myulevel > 3) {
 <br>
 <div align="center"><table><tr><td width=400>
 
-<?php if ($xrf_myulevel > 2)
+<?php if ($xrf_myulevel > 1)
 {
 echo "<a href=\"reading_list.php\">Your Reading List</a><br>
 <a href=\"search_results.php?sort=recent&limit=100&view=shelf\">Recently Added</a><p>";

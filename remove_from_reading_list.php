@@ -5,7 +5,7 @@ require_once("includes/header.php");
 
 $bookid = (int)$_GET['passid'];
 
-if ($xrf_myulevel > 2) {
+if ($xrf_myulevel > 1) {
 	$removefromlist = mysqli_prepare($xrf_db, "DELETE FROM l_readlist WHERE uid = ? AND bookid = ?");
 	mysqli_stmt_bind_param($removefromlist,"ii", $xrf_myid, $bookid);
 	mysqli_stmt_execute($removefromlist) or die(mysqli_error($xrf_db));
