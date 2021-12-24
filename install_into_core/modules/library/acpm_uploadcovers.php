@@ -17,9 +17,12 @@ if ($do == "upload")
 	$source = $_FILES["file-upload"]["tmp_name"];
 	$destination = $coverfolder . $_FILES["file-upload"]["name"];
 	$error = "";
+	
+	if (isset($_POST["overwrite"])) {
+	$overwrite = 1; } else { $overwrite = 0; }
 
 	// CHECK IF FILE ALREADY EXIST
-	if (file_exists($destination)) {
+	if ($overwrite == 0 && file_exists($destination)) {
 	  $error = $destination . " already exist.";
 	}
 
@@ -95,6 +98,8 @@ else
     <form action=\"acp_module_panel.php?modfolder=$modfolder&modpanel=uploadcovers&do=upload\" method=\"post\" enctype=\"multipart/form-data\">
       <input type=\"file\" name=\"file-upload\" id=\"file-upload\" accept=\"image/*\">
       <input type=\"submit\" value=\"Upload File\" name=\"submit\">
+	  <p>
+	  <input type=\"checkbox\" name=\"overwrite\" id=\"overwrite\"> Overwrite Existing Files
     </form>";
 }
 ?>

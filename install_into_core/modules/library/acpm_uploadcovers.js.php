@@ -35,6 +35,10 @@ var upcontrol = {
 
     // @TODO - ADD MORE POST DATA IF YOU WANT
     // data.append(\"foo\", \"bar\");
+	var chkBox = document.getElementById('overwrite');
+	if (chkBox.checked) {
+		data.append(\"overwrite\", \"on\");
+	}
     
     xhr.open('POST', 'acp_module_api.php?modfolder=$modfolder&modpanel=uploadcovers&do=upload', true);
     xhr.onload = function (e) {
