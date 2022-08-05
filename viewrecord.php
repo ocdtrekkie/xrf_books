@@ -138,9 +138,9 @@ if ($xrf_myulevel > 3) {
 	}
 	
 	if ($localpanel==1) {
-		echo "<br><a href=\"acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
+		echo "<br><a href=\"acp_module_panel.php?modfolder=library&modpanel=editbook&passid=$smallcode\">[Edit Record]</a> <a href=\"acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
 	} else {
-		echo "<br><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\">[Copy to New Record]</a>";
+		echo "<br><a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=editbook&passid=$smallcode\" target=\"_blank\">[Edit Record]</a> <a href=\"$xrf_site_url/acp_module_panel.php?modfolder=library&modpanel=addbook&copyfrom=$barcode\" target=\"_blank\">[Copy to New Record]</a>";
 	}
 }
 
